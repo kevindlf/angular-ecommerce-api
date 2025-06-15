@@ -1,0 +1,25 @@
+<div class="row mb-4">
+  <div class="col-md-6">
+    <div class="input-group">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Search products..." 
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch()">
+      <button class="btn btn-primary" (click)="onSearch()">Search</button>
+    </div>
+  </div>
+  
+  <div class="col-md-6">
+    <select 
+      class="form-select" 
+      [(ngModel)]="selectedCategory" 
+      (change)="onCategoryChange(selectedCategory)">
+      <option [ngValue]="null">All Categories</option>
+      <option *ngFor="let category of categories" [ngValue]="category.id">
+        {{ category.name }}
+      </option>
+    </select>
+  </div>
+</div>
