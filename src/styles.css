@@ -1,1 +1,118 @@
-/* You can add global styles to this file, and also import other style files */
+h1 {
+  text-align: center;
+}
+
+body {
+  background-image: url('assets/LadrilloOscuro.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Centrar texto globalmente */
+body, h1, h2, h3, h4, h5, h6, p, span, a, li, div {
+  text-align: center;
+}
+
+/* Centrar imágenes */
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Contenedor del título */
+.titulo-destacado {
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+  margin: 20px auto;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.titulo-destacado h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 1px;
+}
+
+/* Buscador y selector debajo, a la derecha */
+.row.mb-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  margin-right: 20px;
+}
+
+.row.mb-4 input.form-control {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.8rem;
+  width: 200px;
+}
+
+.row.mb-4 .btn {
+  border-radius: 10px;
+  padding: 10px 10px;
+  font-size: 0.8rem;
+  margin-left: 5px;
+}
+
+.row.mb-4 select.form-select {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.8rem;
+  width: 290px;
+}
+
+/* Estilo para cada producto */
+.card.h-100 {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 500px;
+  transition: transform 0.2s;
+}
+
+.card.h-100:hover {
+  transform: scale(1.02);
+}
+
+.btn-outline-secondary {
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #e6e6e6;
+  color: #000;
+}
+
+.btn.btn-sm.btn-info.mt-2 {
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #000;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn.btn-sm.btn-info.mt-2:hover {
+  background-color: #e6e6e6;
+  color: #000;
+}

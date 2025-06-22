@@ -4,10 +4,10 @@
       <input 
         type="text" 
         class="form-control" 
-        placeholder="Search products..." 
+        placeholder="Buscar productos..." 
         [(ngModel)]="searchTerm"
         (keyup.enter)="onSearch()">
-      <button class="btn btn-primary" (click)="onSearch()">Search</button>
+      <button class="btn btn-primary" (click)="onSearch()">Buscar</button>
     </div>
   </div>
   
@@ -16,7 +16,7 @@
       class="form-select" 
       [(ngModel)]="selectedCategory" 
       (change)="onCategoryChange(selectedCategory)">
-      <option [ngValue]="null">All Categories</option>
+      <option [ngValue]="null">Todas las categorías</option>
       <option *ngFor="let category of categories" [ngValue]="category.id">
         {{ category.name }}
       </option>

@@ -1,6 +1,8 @@
 <div class="container mt-4">
-  <h1>Platzi Fake Store</h1>
-  
+  <div class="titulo-destacado">
+
+  <h1>My Home Store</h1>
+  </div>
   <app-product-filter 
     [categories]="categories"
     (searchEvent)="handleSearch($event)"
@@ -65,8 +67,8 @@
         No hay productos disponibles
       </div>
       <button (click)="clearFilters()" class="btn btn-sm btn-info mt-2">
-        Mostrar todos los productos
-      </button>
+  Mostrar todos los productos
+</button>
     </div>
   </div>
 </div>

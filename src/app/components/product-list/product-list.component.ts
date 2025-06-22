@@ -31,39 +31,42 @@ export class ProductListComponent implements OnInit {
     this.loadProducts();
   }
 
-  loadProducts(): void {
-    this.loading = true;
-    this.error = false;
-    
-    this.productService.getAllProducts().subscribe({
-      next: (data) => {
-        // Filtramos y mapeamos los productos
-        this.products = data
-          .filter(product => 
-            product.category && 
-            this.categories.some(cat => cat.apiName === product.category.name)
-          )
-          .map(product => {
-            const category = this.categories.find(cat => cat.apiName === product.category.name);
-            return {
-              ...product,
-              category: {
-                ...product.category,
-                name: category ? category.name : product.category.name
-              }
-            };
-          });
-          
-        this.filteredProducts = [...this.products];
-        this.loading = false;
-      },
-      error: (err) => {
-        this.error = true;
-        this.loading = false;
-        console.error('Error loading products:', err);
-      }
-    });
-  }
+ loadProducts(): void {
+  this.loading = true;
+  this.error = false;
+
+  this.productService.getAllProducts().subscribe({
+    next: (data) => {
+      console.log('PRODUCTOS RECIBIDOS:', data);
+
+      // Filtramos y mapeamos los productos
+      this.products = data
+        .filter(product => 
+          product.category && 
+          this.categories.some(cat => cat.apiName === product.category.name)
+        )
+        .map(product => {
+          const category = this.categories.find(cat => cat.apiName === product.category.name);
+          return {
+            ...product,
+            category: {
+              ...product.category,
+              name: category ? category.name : product.category.name
+            }
+          };
+        });
+
+      this.filteredProducts = [...this.products];
+      this.loading = false;
+    },
+    error: (err) => {
+      this.error = true;
+      this.loading = false;
+      console.error('Error loading products:', err);
+    }
+  });
+}
+
 
   handleSearch(searchTerm: string): void {
     this.searchTerm = searchTerm;
