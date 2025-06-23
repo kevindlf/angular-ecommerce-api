@@ -142,3 +142,23 @@ img {
   border-top: 1px solid #ddd;
   width: 100%;
 }
+
+.titulo-destacado {
+  position: relative;
+  padding-top: 60px; /* espacio arriba para el logo */
+}
+
+.titulo-destacado::before {
+  content: "";
+  display: block;
+  background-image: url('assets/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
