@@ -116,3 +116,29 @@ img {
   background-color: #e6e6e6;
   color: #000;
 }
+
+/* Grilla de productos con 2 por fila */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 80px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.product-item {
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  background-color: #ffffffcc;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #333;
+  margin-top: 40px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #ddd;
+  width: 100%;
+}

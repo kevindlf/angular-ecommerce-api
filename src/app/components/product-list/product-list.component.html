@@ -33,28 +33,29 @@
       </h4>
     </div>
 
-    <div class="row mt-4">
-      <div class="col-md-4 mb-4" *ngFor="let product of filteredProducts">
-        <div class="card h-100">
-          <img 
-            [src]="product.images?.[0] || 'assets/placeholder.png'" 
-            class="card-img-top img-fluid" 
-            [alt]="product.title"
-            style="height: 200px; object-fit: contain; padding: 10px; background-color: #f8f9fa;"
-          >
-          <div class="card-body">
-            <h5 class="card-title">{{ product.title }}</h5>
-            <p class="card-text">{{ product.description | slice:0:100 }}...</p>
-            <p class="card-text"><strong>Precio: </strong>${{ product.price | number }}</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">
-              Categoría: {{ product.category?.name || 'Sin categoría' }}
-            </small>
-          </div>
-        </div>
+    <div class="product-grid">
+  <div class="product-item" *ngFor="let product of filteredProducts">
+    <div class="card h-100">
+      <img 
+        [src]="product.images?.[0] || 'assets/placeholder.png'" 
+        class="card-img-top img-fluid" 
+        [alt]="product.title"
+        style="height: 200px; object-fit: contain; padding: 10px; background-color: #f8f9fa;"
+      >
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.description | slice:0:100 }}...</p>
+        <p class="card-text"><strong>Precio: </strong>${{ product.price | number }}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">
+          Categoría: {{ product.category?.name || 'Sin categoría' }}
+        </small>
       </div>
     </div>
+  </div>
+</div>
+
 
     <div *ngIf="filteredProducts.length === 0" class="alert alert-info mt-3">
       <div *ngIf="searchTerm">
@@ -67,8 +68,12 @@
         No hay productos disponibles
       </div>
       <button (click)="clearFilters()" class="btn btn-sm btn-info mt-2">
-  Mostrar todos los productos
-</button>
+        Mostrar todos los productos
+      </button>
     </div>
   </div>
 </div>
+
+<footer class="footer">
+  <p>Copyright My Home Store - 2025. TODOS LOS DERECHOS RESERVADOS</p>
+</footer>
