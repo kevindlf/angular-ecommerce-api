@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { FirestoreService } from '../services/firestore.service';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -20,12 +22,25 @@ export class LoginPageComponent {
   email = '';
   password = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private firestoreService: FirestoreService,
+    private router: Router
+  ) {}
 
   async login() {
     try {
-      await this.authService.login(this.email, this.password);
-      alert('Login exitoso');
+      const user = await this.authService.login(this.email, this.password);
+      if (user) {
+        const userData = await this.firestoreService.obtenerUsuarioPorEmail(this.email);
+        if (userData) {
+          // User has an account, redirect to account home
+          this.router.navigate(['/account-home']);
+        } else {
+          // User does not have an account, redirect to user home
+          this.router.navigate(['/user-home']);
+        }
+      }
     } catch (error: any) {
       alert('Error: ' + error.message);
     }
