@@ -36,10 +36,7 @@ export class LoginPageComponent {
         if (userData) {
           // User has an account, redirect to account home
           this.router.navigate(['/account-home']);
-        } else {
-          // User does not have an account, redirect to user home
-          this.router.navigate(['/user-home']);
-        }
+        } 
       }
     } catch (error: any) {
       alert('Error: ' + error.message);
