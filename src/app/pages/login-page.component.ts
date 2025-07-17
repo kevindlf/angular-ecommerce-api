@@ -9,13 +9,22 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-login-page',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  styleUrls: ['./login-page.component.css'],
   template: `
-    <h2>Iniciar sesión</h2>
-    <form (ngSubmit)="login()">
-      <input type="email" [(ngModel)]="email" name="loginEmail" placeholder="Email" required>
-      <input type="password" [(ngModel)]="password" name="loginPassword" placeholder="Contraseña" required>
-      <button type="submit">Iniciar sesión</button>
-    </form>
+    <div class="login-container">
+      <h2>Iniciar sesión</h2>
+      <form (ngSubmit)="login()" class="login-form">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input id="loginEmail" type="email" [(ngModel)]="email" name="loginEmail" placeholder="Ingrese su email" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Contraseña</label>
+          <input id="loginPassword" type="password" [(ngModel)]="password" name="loginPassword" placeholder="Ingrese su contraseña" required>
+        </div>
+        <button type="submit" class="btn-submit">Iniciar sesión</button>
+      </form>
+    </div>
   `
 })
 export class LoginPageComponent {

@@ -3,9 +3,7 @@ import { LoginPageComponent } from './pages/login-page.component';
 import { UserHomeComponent } from './pages/user-home.component';
 import { AccountHomeComponent } from './pages/account-home.component';
 import { MainLayoutComponent } from './layouts/main-layout.component';
-import { AccountManagementComponent } from './pages/account-management.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
-import { EditAccountComponent } from './pages/edit-account.component';
+import { NewProductPageComponent } from './pages/new-product-page.component';
 
 export const routes: Routes = [
   {
@@ -13,7 +11,7 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: 'user-home', component: UserHomeComponent },
-      { path: 'login', component: LoginPageComponent },
+      { path: 'new-product-page', component: NewProductPageComponent },
     ]
   },
   { path: 'account-home', component: AccountHomeComponent },
