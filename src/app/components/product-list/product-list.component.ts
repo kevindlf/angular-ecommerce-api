@@ -32,6 +32,10 @@ export class ProductListComponent implements OnInit {
     this.loadProducts();
   }
 
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
  loadProducts(): void {
   this.loading = true;
   this.error = false;
