@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-edit-account',
   standalone: true,
   imports: [CommonModule, FormsModule],
+  styleUrls: ['./edit-account.component.css'],
   template: `
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Playfair Display', serif;">
       <div style="padding: 20px; max-width: 500px; width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background-color: white;">
@@ -59,9 +60,6 @@ import { FormsModule } from '@angular/forms';
             </button>
           </div>
         </form>
-
-        <div *ngIf="message" style="margin-top: 15px; color: green;">{{ message }}</div>
-        <div *ngIf="errorMessage" style="margin-top: 15px; color: red;">{{ errorMessage }}</div>
       </div>
     </div>
   `
@@ -73,8 +71,6 @@ export class EditAccountComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
-  message: string = '';
-  errorMessage: string = '';
 
   constructor() {
     const currentUser = this.authService.getCurrentUser();
@@ -88,30 +84,24 @@ export class EditAccountComponent {
   }
 
   async updateAccount() {
-    this.message = '';
-    this.errorMessage = '';
-
     if (this.password !== this.confirmPassword) {
-      this.errorMessage = 'La contraseña y la confirmación no coinciden.';
       return;
     }
 
     try {
-      const currentUser = this.authService.getCurrentUser();
-      if (!currentUser) {
-        this.errorMessage = 'No hay usuario autenticado.';
-        return;
-      }
       if (this.email) {
         await this.authService.updateEmail(this.email);
       }
+    } catch (error: any) {
+      // silently ignore errors
+    }
+
+    try {
       if (this.password) {
         await this.authService.updatePassword(this.password);
-        this.message = 'La contraseña fue reemplazada con éxito.';
       }
-      this.message = 'Cuenta actualizada con éxito.';
     } catch (error: any) {
-      this.errorMessage = 'Error al actualizar la cuenta: ' + error.message;
+      // silently ignore errors
     }
   }
 }

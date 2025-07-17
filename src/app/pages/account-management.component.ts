@@ -6,12 +6,17 @@ import { Router } from '@angular/router';
   selector: 'app-account-management',
   standalone: true,
   imports: [CommonModule],
+  styleUrls: ['./account-management.component.css'],
   template: `
-    <div style="padding: 20px;">
-      <h2>Administrar Cuenta</h2>
-      <button (click)="editAccount()" class="common-button" style="margin: 10px;">Editar Cuenta</button>
-      <button (click)="deleteAccount()" class="common-button" style="margin: 10px; background-color: #d9534f;">Eliminar Cuenta</button>
-      <button (click)="goBack()" class="common-button" style="margin: 10px;">Volver</button>
+    <div class="container">
+      <div class="content-box">
+        <h2>Administrar Cuenta</h2>
+        <div>
+          <button (click)="editAccount()" class="common-button">Editar Cuenta</button>
+          <button (click)="deleteAccount()" class="common-button delete-button">Eliminar Cuenta</button>
+          <button (click)="goBack()" class="common-button">Volver</button>
+        </div>
+      </div>
     </div>
   `
 })
@@ -29,6 +34,16 @@ export class AccountManagementComponent {
         const firebaseAuth = (await import('firebase/auth')).getAuth();
         const user = firebaseAuth.currentUser;
         if (user) {
+          const password = prompt('Por favor, ingrese su contraseña para confirmar la eliminación de la cuenta:');
+          if (!password) {
+            alert('La eliminación de la cuenta fue cancelada. No se ingresó contraseña.');
+            return;
+          }
+          const credential = (await import('firebase/auth')).EmailAuthProvider.credential(
+            user.email || '',
+            password
+          );
+          await (await import('firebase/auth')).reauthenticateWithCredential(user, credential);
           await (await import('firebase/auth')).deleteUser(user);
           alert('Su cuenta fue eliminada con éxito');
           this.router.navigate(['/login']);

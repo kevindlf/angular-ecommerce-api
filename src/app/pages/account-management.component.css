@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Playfair Display', serif;
+}
+
+.content-box {
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  background-color: white;
+  text-align: center;
+}
+
+h2 {
+  color: #a67c52;
+  font-size: 1.7rem;
+  margin-bottom: 20px;
+}
+
+.common-button {
+  width: 140px;
+  height: 40px;
+  font-size: 1.1rem;
+  font-weight: normal;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: none;
+  margin: 0 10px;
+  background-color: #a67c52;
+  color: white;
+  border: none;
+  font-family: 'Playfair Display', serif;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.delete-button {
+  width: 160px;
+  height: 40px;
+  font-size: 1.1rem;
+  font-weight: normal;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: none;
+}

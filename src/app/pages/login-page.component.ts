@@ -11,19 +11,23 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
   styleUrls: ['./login-page.component.css'],
   template: `
-    <div class="login-container">
-      <h2>Iniciar sesión</h2>
-      <form (ngSubmit)="login()" class="login-form">
-        <div class="form-group">
-          <label for="loginEmail">Email</label>
-          <input id="loginEmail" type="email" [(ngModel)]="email" name="loginEmail" placeholder="Ingrese su email" required>
-        </div>
-        <div class="form-group">
-          <label for="loginPassword">Contraseña</label>
-          <input id="loginPassword" type="password" [(ngModel)]="password" name="loginPassword" placeholder="Ingrese su contraseña" required>
-        </div>
-        <button type="submit" class="btn-submit">Iniciar sesión</button>
-      </form>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Playfair Display', serif;">
+      <div style="padding: 20px; max-width: 500px; width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background-color: white;">
+        <h2 style="color: #a67c52; font-size: 2rem;">Iniciar sesión</h2>
+        <form (ngSubmit)="login()" #loginForm="ngForm" style="text-align: left;">
+          <div style="margin-bottom: 15px;">
+            <label for="loginEmail" style="display: block; text-align: left; margin-bottom: 5px;">Email</label>
+            <input id="loginEmail" type="email" [(ngModel)]="email" name="loginEmail" placeholder="Ingrese su email" required class="edit-account-input" />
+          </div>
+          <div style="margin-bottom: 15px;">
+            <label for="loginPassword" style="display: block; text-align: left; margin-bottom: 5px;">Contraseña</label>
+            <input id="loginPassword" type="password" [(ngModel)]="password" name="loginPassword" placeholder="Ingrese su contraseña" required class="edit-account-input" />
+          </div>
+          <div style="display: flex; justify-content: flex-end; align-items: center;">
+            <button type="submit" class="common-button" [disabled]="loginForm.invalid">Iniciar sesión</button>
+          </div>
+        </form>
+      </div>
     </div>
   `
 })
@@ -45,7 +49,7 @@ export class LoginPageComponent {
         if (userData) {
           // User has an account, redirect to account home
           this.router.navigate(['/account-home']);
-        } 
+        }
       }
     } catch (error: any) {
       alert('Error: ' + error.message);
