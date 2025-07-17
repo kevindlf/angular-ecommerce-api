@@ -1,0 +1,24 @@
+.edit-account-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.common-button {
+  background-color: #a67c52;
+  border: 1px solid #a67c52;
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-weight: normal;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.common-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
