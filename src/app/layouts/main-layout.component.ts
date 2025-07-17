@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
       </div>
       <div style="display: flex; gap: 10px;">
         <a routerLink="/" style="text-decoration: none; padding: 8px 16px; background-color: #a67c52; color: white; border-radius: 4px;">Inicio</a>
-        <a routerLink="/register" style="text-decoration: none; padding: 8px 16px; background-color: #a67c52; color: white; border-radius: 4px;">Registrarse</a>
+        <a routerLink="/register-page" style="text-decoration: none; padding: 8px 16px; background-color: #a67c52; color: white; border-radius: 4px;">Registrarse</a>
         <a routerLink="/login" style="text-decoration: none; padding: 8px 16px; background-color: #a67c52; color: white; border-radius: 4px;">Iniciar sesión</a>
       </div>
     </nav>
