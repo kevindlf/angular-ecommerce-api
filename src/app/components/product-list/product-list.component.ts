@@ -1,13 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ProductFilterComponent } from '../product-filter/product-filter.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProductFilterComponent],
+  imports: [CommonModule, ProductFilterComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -26,7 +25,7 @@ export class ProductListComponent implements OnInit {
   searchTerm = '';
   selectedCategory: number | null = null;
 
-  constructor(private productService: ProductService, private cdr: ChangeDetectorRef) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -59,12 +58,10 @@ export class ProductListComponent implements OnInit {
 
       this.filteredProducts = [...this.products];
       this.loading = false;
-      this.cdr.detectChanges();
     },
     error: (err) => {
       this.error = true;
       this.loading = false;
-      this.cdr.detectChanges();
       console.error('Error loading products:', err);
     }
   });

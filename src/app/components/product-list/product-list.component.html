@@ -1,12 +1,7 @@
 <div class="container mt-4">
-  <div class="titulo-destacado" style="background: transparent !important; box-shadow: none; padding: 0; margin: 60px auto 0 auto; text-align: center; max-width: 900px;">
-    <h1 style="font-family: 'Playfair Display', serif; margin-bottom: 0;">
-      Descubrí lo mejor<br />para tu hogar
-    </h1>
-    <p style="font-size: 1.2rem; color: #555; margin-top: 4px;">Productos seleccionados para vos</p>
-    <a routerLink="/new-product-page" style="background-color: #a67c52; color: white; padding: 12px 32px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
-      Ver productos
-    </a>
+  <div class="titulo-destacado">
+
+  <h1>My Home Store</h1>
   </div>
   <app-product-filter 
     [categories]="categories"
@@ -38,30 +33,29 @@
       </h4>
     </div>
 
-    <div class="product-grid-container">
-      <div class="product-grid">
-        <div class="product-item" *ngFor="let product of filteredProducts">
-          <div class="card h-100">
-            <img 
-              [src]="product.images?.[0] || 'assets/placeholder.png'" 
-              class="card-img-top img-fluid" 
-              [alt]="product.title"
-              style="height: 200px; object-fit: contain; padding: 10px; background-color: #f8f9fa;"
-            />
-            <div class="card-body">
-              <h5 class="card-title">{{ product.title }}</h5>
-              <p class="card-text">{{ product.description | slice:0:100 }}...</p>
-              <p class="card-text"><strong>Precio: </strong>${{ product.price | number }}</p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">
-                Categoría: {{ product.category?.name || 'Sin categoría' }}
-              </small>
-            </div>
-          </div>
-        </div>
+    <div class="product-grid">
+  <div class="product-item" *ngFor="let product of filteredProducts">
+    <div class="card h-100">
+      <img 
+        [src]="product.images?.[0] || 'assets/placeholder.png'" 
+        class="card-img-top img-fluid" 
+        [alt]="product.title"
+        style="height: 200px; object-fit: contain; padding: 10px; background-color: #f8f9fa;"
+      >
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.description | slice:0:100 }}...</p>
+        <p class="card-text"><strong>Precio: </strong>${{ product.price | number }}</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">
+          Categoría: {{ product.category?.name || 'Sin categoría' }}
+        </small>
       </div>
     </div>
+  </div>
+</div>
+
 
     <div *ngIf="filteredProducts.length === 0" class="alert alert-info mt-3">
       <div *ngIf="searchTerm">
