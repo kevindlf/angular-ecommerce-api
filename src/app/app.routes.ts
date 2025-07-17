@@ -6,6 +6,7 @@ import { MainLayoutComponent } from './layouts/main-layout.component';
 import { AccountManagementComponent } from './pages/account-management.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { EditAccountComponent } from './pages/edit-account.component';
+import { NewProductPageComponent } from './pages/new-product-page.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
     children: [
       { path: 'user-home', component: UserHomeComponent },
       { path: 'login', component: LoginPageComponent },
+      { path: 'new-product-page', component: NewProductPageComponent },
     ]
   },
   { path: 'account-home', component: AccountHomeComponent },

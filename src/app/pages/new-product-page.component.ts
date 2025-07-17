@@ -1,17 +1,16 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../services/product.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ProductFilterComponent } from '../product-filter/product-filter.component';
+import { ProductFilterComponent } from '../components/product-filter/product-filter.component';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-new-product-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProductFilterComponent],
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  imports: [CommonModule, ProductFilterComponent],
+  templateUrl: './new-product-page.component.html',
+ 
 })
-export class ProductListComponent implements OnInit {
+export class NewProductPageComponent implements OnInit {
   products: any[] = [];
   filteredProducts: any[] = [];
   categories = [
@@ -32,55 +31,51 @@ export class ProductListComponent implements OnInit {
     this.loadProducts();
   }
 
- loadProducts(): void {
-  this.loading = true;
-  this.error = false;
+  loadProducts(): void {
+    this.loading = true;
+    this.error = false;
 
-  this.productService.getAllProducts().subscribe({
-    next: (data) => {
-      console.log('PRODUCTOS RECIBIDOS:', data);
+    this.productService.getAllProducts().subscribe({
+      next: (data) => {
+        this.products = data
+          .filter(product =>
+            product.category &&
+            this.categories.some(cat => cat.apiName === product.category.name)
+          )
+          .map(product => {
+            const category = this.categories.find(cat => cat.apiName === product.category.name);
+            return {
+              ...product,
+              category: {
+                ...product.category,
+                name: category ? category.name : product.category.name
+              }
+            };
+          });
 
-      // Filtramos y mapeamos los productos
-      this.products = data
-        .filter(product => 
-          product.category && 
-          this.categories.some(cat => cat.apiName === product.category.name)
-        )
-        .map(product => {
-          const category = this.categories.find(cat => cat.apiName === product.category.name);
-          return {
-            ...product,
-            category: {
-              ...product.category,
-              name: category ? category.name : product.category.name
-            }
-          };
-        });
-
-      this.filteredProducts = [...this.products];
-      this.loading = false;
-      this.cdr.detectChanges();
-    },
-    error: (err) => {
-      this.error = true;
-      this.loading = false;
-      this.cdr.detectChanges();
-      console.error('Error loading products:', err);
-    }
-  });
-}
-
+        this.filteredProducts = [...this.products];
+        this.loading = false;
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.error = true;
+        this.loading = false;
+        this.cdr.detectChanges();
+        console.error('Error loading products:', err);
+      }
+    });
+  }
 
   handleSearch(searchTerm: string): void {
     this.searchTerm = searchTerm;
-    
+
     if (!searchTerm.trim()) {
       this.applyFilters();
       return;
     }
 
     const normalizedTerm = this.normalizeSearchTerm(searchTerm);
-    
+
     this.filteredProducts = this.products.filter(product => {
       const searchFields = [
         product.title,
@@ -99,16 +94,14 @@ export class ProductListComponent implements OnInit {
 
   applyFilters(): void {
     let result = [...this.products];
-    
-    // Filtro por categoría
+
     if (this.selectedCategory) {
       const category = this.categories.find(c => c.id === this.selectedCategory);
       if (category) {
         result = result.filter(p => p.category.name === category.name);
       }
     }
-    
-    // Filtro por búsqueda
+
     if (this.searchTerm.trim()) {
       const normalizedTerm = this.normalizeSearchTerm(this.searchTerm);
       result = result.filter(product => {
@@ -120,7 +113,7 @@ export class ProductListComponent implements OnInit {
         return this.normalizeText(searchFields).includes(normalizedTerm);
       });
     }
-    
+
     this.filteredProducts = result;
   }
 
@@ -135,16 +128,8 @@ export class ProductListComponent implements OnInit {
     return category?.name || 'Desconocida';
   }
 
-  countProductsByCategory(categoryId: number): number {
-    const category = this.categories.find(c => c.id === categoryId);
-    return category 
-      ? this.products.filter(p => p.category.name === category.name).length 
-      : 0;
-  }
-
-  // --- Helper Functions ---
   private normalizeSearchTerm(term: string): string {
-    const dictionary: {[key: string]: string[]} = {
+    const dictionary: { [key: string]: string[] } = {
       'ropa': ['clothes', 'clothing', 'apparel'],
       'electronica': ['electronics', 'devices', 'tech'],
       'mueble': ['furniture', 'furnishing'],
