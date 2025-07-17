@@ -23,5 +23,5 @@ export const routes: Routes = [
   },
   { path: 'account-home', component: AccountHomeComponent },
   { path: 'account-management', component: AccountManagementComponent },
-  { path: 'edit-account', component: EditAccountComponent },
+  { path: 'edit-account', component: EditAccountComponent },  
 ];
