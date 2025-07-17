@@ -1,32 +1,48 @@
 form {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  gap: 15px;
   margin-bottom: 20px;
-  align-items: center;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"],
 input[type="number"] {
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  flex: 1 1 150px;
-  min-width: 150px;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
+  outline: none;
 }
 
 button {
-  padding: 8px 16px;
-  font-size: 14px;
+  padding: 12px 0;
+  font-size: 16px;
   cursor: pointer;
   border: none;
   background-color: #007bff;
   color: white;
-  border-radius: 4px;
-  flex: 0 0 auto;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {

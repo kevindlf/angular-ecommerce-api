@@ -9,14 +9,28 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <h2>Registrarse</h2>
-    <form (ngSubmit)="registrar()">
-      <input type="text" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required>
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required>
-      <input type="password" [(ngModel)]="password" name="password" placeholder="Contraseña" required>
-      <input type="number" [(ngModel)]="edad" name="edad" placeholder="Edad" required>
-      <button type="submit">Registrarse</button>
-    </form>
+    <div class="register-container">
+      <h2>Registrarse</h2>
+      <form (ngSubmit)="registrar()" class="register-form">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" [(ngModel)]="nombre" name="nombre" placeholder="Ingrese su nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" [(ngModel)]="email" name="email" placeholder="Ingrese su email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input id="password" type="password" [(ngModel)]="password" name="password" placeholder="Ingrese su contraseña" required>
+        </div>
+        <div class="form-group">
+          <label for="edad">Edad</label>
+          <input id="edad" type="number" [(ngModel)]="edad" name="edad" placeholder="Ingrese su edad" required>
+        </div>
+        <button type="submit" class="btn-submit">Registrarse</button>
+      </form>
+    </div>
   `
 })
 export class RegisterPageComponent {
