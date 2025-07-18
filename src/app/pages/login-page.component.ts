@@ -48,7 +48,7 @@ export class LoginPageComponent {
         const userData = await this.firestoreService.obtenerUsuarioPorEmail(this.email);
         if (userData) {
           // User has an account, redirect to account home
-          this.router.navigate(['/account-home']);
+        this.router.navigate(['/account']);
         }
       }
     } catch (error: any) {

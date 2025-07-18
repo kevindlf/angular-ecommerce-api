@@ -57,6 +57,6 @@ export class AccountManagementComponent {
   }
 
   goBack() {
-    this.router.navigate(['/account-home']);
+    this.router.navigate(['/account']);
   }
 }

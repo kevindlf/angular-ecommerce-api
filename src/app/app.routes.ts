@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router';
 import { LoginPageComponent } from './pages/login-page.component';
 import { HomePageComponent } from './pages/home-page.component';
-import { AccountHomeComponent } from './pages/account-home.component';
 import { MainLayoutComponent } from './layouts/main-layout.component';
 import { AccountManagementComponent } from './pages/account-management.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { NewProductPageComponent } from './pages/new-product-page.component';
 import { EditAccountComponent } from './pages/edit-account.component';
 import { RegisterPageComponent } from './pages/register-page.component';
+import { AccountLayoutComponent } from './layouts/account-layout.component';
+import { AccountHomePageComponent } from './pages/account-home-page.component';
 
 export const routes: Routes = [
   {
@@ -21,7 +22,13 @@ export const routes: Routes = [
       { path: 'new-product-page', component: NewProductPageComponent },
     ]
   },
-  { path: 'account-home', component: AccountHomeComponent },
+  {
+    path: 'account',
+    component: AccountLayoutComponent,
+    children: [
+      { path: '', component: AccountHomePageComponent }
+    ]
+  },
   { path: 'account-management', component: AccountManagementComponent },
   { path: 'edit-account', component: EditAccountComponent },
 ];
