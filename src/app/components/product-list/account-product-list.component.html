@@ -1,0 +1,96 @@
+<div class="container mt-4">
+  <div class="titulo-destacado" style="background: transparent !important; box-shadow: none; padding: 0; margin: 60px auto 0 auto; text-align: center; max-width: 900px;">
+    <h1 style="font-family: 'Playfair Display', serif; margin-bottom: 0;">
+      Descubrí lo mejor<br />para tu hogar
+    </h1>
+    <!-- Removed the line below as per user request -->
+    <!-- <p style="font-size: 1.2rem; color: #555; margin-top: 4px;">Productos seleccionados para vos</p> -->
+    <a routerLink="/new-product-page" style="background-color: #a67c52; color: white; padding: 12px 32px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
+      Ver productos
+    </a>
+  </div>
+
+  <!-- Carousel removed as per user request -->
+  <app-product-filter 
+    [categories]="categories"
+    (searchEvent)="handleSearch($event)"
+    (categoryFilterEvent)="handleCategoryFilter($event)">
+  </app-product-filter>
+
+  <div *ngIf="loading" class="text-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger mt-3">
+    Error al cargar productos. Por favor intenta nuevamente.
+  </div>
+
+  <div *ngIf="!loading && !error">
+    <!-- Mostrar categoría activa cuando hay filtro -->
+    <div *ngIf="selectedCategory" class="mb-3">
+      <h4>
+        Mostrando productos de: 
+        <span class="badge bg-primary">
+          {{ getCategoryName(selectedCategory) }}
+        </span>
+        <button (click)="clearFilters()" class="btn btn-sm btn-outline-secondary ms-2">
+          Limpiar filtros
+        </button>
+      </h4>
+    </div>
+
+    <div class="product-grid-container">
+      <div class="product-grid">
+        <div class="product-item" *ngFor="let product of filteredProducts">
+          <div class="card h-100">
+            <img 
+              [src]="product.images?.[0] || 'assets/placeholder.png'" 
+              class="card-img-top img-fluid" 
+              [alt]="product.title"
+              style="height: 200px; object-fit: contain; padding: 10px; background-color: #f8f9fa;"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.title }}</h5>
+              <p class="card-text">{{ product.description | slice:0:100 }}...</p>
+              <p class="card-text"><strong>Precio: </strong>${{ product.price | number }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">
+                Categoría: {{ product.category?.name || 'Sin categoría' }}
+              </small>
+              <button (click)="addToCart(product); $event.stopPropagation()" class="btn btn-primary mt-3 w-100" style="font-size: 1rem; padding: 10px 0;">
+                Agregar al carrito
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="filteredProducts.length === 0" class="alert alert-info mt-3">
+      <div *ngIf="searchTerm">
+        No se encontraron productos para "{{ searchTerm }}"
+      </div>
+      <div *ngIf="selectedCategory && !searchTerm">
+        No hay productos disponibles en {{ getCategoryName(selectedCategory) }}
+      </div>
+      <div *ngIf="!selectedCategory && !searchTerm">
+        No hay productos disponibles
+      </div>
+      <button (click)="clearFilters()" class="btn btn-sm btn-info mt-2">
+        Mostrar todos los productos
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="scroll-top-outside-footer">
+  <button class="scroll-top-button" (click)="scrollToTop()" aria-label="Volver al principio">
+    &#8679;
+  </button>
+</div>
+<footer class="footer">
+  <p>Copyright My Home Store - 2025. TODOS LOS DERECHOS RESERVADOS</p>
+</footer>
