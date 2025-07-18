@@ -13,7 +13,20 @@ import { RouterModule } from '@angular/router';
         </div>
         <span style="font-weight: bold; font-size: 1.2rem; color: #333;">My Home Store</span>
       </div>
-      <div style="display: flex; gap: 10px;">
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <a
+          title="Carrito de compras"
+          aria-label="Carrito de compras"
+          routerLink="/cart-management"
+          class="common-button"
+          style="padding: 8px 12px; border-radius: 4px; cursor: pointer; background-color: #a67c52; color: white; border: none; display: inline-flex; align-items: center; text-decoration: none; margin-right: 8px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 6px;">
+            <path d="M7 4h-2l-3 9v2h2l3-9zm0 0h10l1 5h-12l-1-5zm0 0h10l1 5h-12l-1-5zm0 0h10l1 5h-12l-1-5z" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="9" cy="20" r="1" fill="white"/>
+            <circle cx="17" cy="20" r="1" fill="white"/>
+          </svg>
+          Carrito
+        </a>
         <a
           title="Administrar cuenta"
           aria-label="Administrar cuenta"

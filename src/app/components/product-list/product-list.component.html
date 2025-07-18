@@ -58,6 +58,9 @@
               <small class="text-muted">
                 Categoría: {{ product.category?.name || 'Sin categoría' }}
               </small>
+              <button (click)="addToCart(product); $event.stopPropagation()" class="btn btn-primary mt-3 w-100" style="font-size: 1rem; padding: 10px 0;">
+                Agregar al carrito
+              </button>
             </div>
           </div>
         </div>

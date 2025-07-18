@@ -1,0 +1,26 @@
+.cart-container {
+  padding: 10px;
+  border: 1px solid #a67c52;
+  border-radius: 8px;
+  max-width: 300px;
+  background-color: #fff8f0;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.cart-item-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin-right: 8px;
+}
+.cart-total {
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
