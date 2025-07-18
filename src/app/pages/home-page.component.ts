@@ -8,17 +8,25 @@ import { ProductService } from '../services/product.service';
   standalone: true,
   imports: [ProductListComponent, CarouselComponent],
   template: `
-    <app-carousel [images]="carouselImages"></app-carousel>
-    <app-product-list></app-product-list>
+    <app-product-list [images]="carouselImages"></app-product-list>
   `
 })
 export class HomePageComponent implements OnInit {
-  carouselImages: string[] = [];
+  carouselImages: string[] = [
+    '/assets/carrousel/image1.png',
+    '/assets/carrousel/image2.png',
+    '/assets/carrousel/image3.png',
+    '/assets/carrousel/image4.png',
+    '/assets/carrousel/image5.png',
+    '/assets/carrousel/image6.png',
+    '/assets/carrousel/image8.png'
+  ];
 
   constructor(private productService: ProductService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.loadCarouselImages();
+    // Commenting out dynamic loading to use static images
+    // this.loadCarouselImages();
   }
 
   loadCarouselImages(): void {

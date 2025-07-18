@@ -8,6 +8,7 @@ import { CartService, CartItem } from '../services/cart.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './cart-management.component.html',
+  styleUrls: ['./cart-management.component.css']
 })
 export class CartManagementComponent implements OnInit {
   cartItems: CartItem[] = [];

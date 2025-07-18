@@ -1,17 +1,25 @@
-<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
-  <h3>Carrito de Compras</h3>
-  <ul>
-    <li *ngFor="let cartItem of cartItems">
-      <img *ngIf="cartItem.image" [src]="cartItem.image" alt="{{cartItem.title}}" class="cart-item-image" />
-      <span>{{ cartItem.title }} (x{{ cartItem.quantity }}) - ${{ cartItem.price * cartItem.quantity }}</span>
-      <button (click)="removeItem(cartItem.productId)" class="btn btn-sm btn-danger">Eliminar</button>
-    </li>
-  </ul>
-  <div class="cart-total">
-    <strong>Total: ${{ getTotal() }}</strong>
+<div class="container" *ngIf="cartItems.length > 0; else emptyCart">
+  <div class="content-box">
+    <h2>Carrito de Compras</h2>
+    <ul>
+      <li *ngFor="let cartItem of cartItems">
+        <img *ngIf="cartItem.image" [src]="cartItem.image" alt="{{cartItem.title}}" class="cart-item-image" />
+        <span>{{ cartItem.title }} (x{{ cartItem.quantity }}) - ${{ cartItem.price * cartItem.quantity }}</span>
+        <button (click)="removeItem(cartItem.productId)" class="common-button delete-button">Eliminar</button>
+      </li>
+    </ul>
+    <div class="cart-total">
+      <strong>Total: ${{ getTotal() }}</strong>
+    </div>
+    <button (click)="clearCart()" class="common-button">Vaciar carrito</button>
   </div>
-  <button (click)="clearCart()" class="btn btn-sm btn-warning">Vaciar carrito</button>
 </div>
 <ng-template #emptyCart>
-  <p>El carrito está vacío.</p>
+  <div class="container">
+    <div class="content-box">
+      <p>El carrito está vacío.</p>
+      <button (click)="goBack()" class="common-button">Volver</button>
+      <button (click)="goToShop()" class="common-button">Comprar</button>
+    </div>
+  </div>
 </ng-template>

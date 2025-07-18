@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef, inject } from '@angular/core';
+
+import { Component, OnInit, ChangeDetectorRef, inject, Input } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -9,11 +10,13 @@ import { CartService, CartItem } from '../../services/cart.service';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProductFilterComponent],
+  imports: [CommonModule, RouterModule, ProductFilterComponent, CarouselComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
+  @Input() images: string[] = [];
+
   products: any[] = [];
   filteredProducts: any[] = [];
   categories = [

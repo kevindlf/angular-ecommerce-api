@@ -6,13 +6,13 @@
         <li *ngFor="let cartItem of cartItems">
           <img *ngIf="cartItem.image" [src]="cartItem.image" alt="{{cartItem.title}}" style="width: 50px; height: 50px; object-fit: contain; margin-right: 10px;" />
           <span>{{ cartItem.title }} (x{{ cartItem.quantity }}) - ${{ cartItem.price * cartItem.quantity }}</span>
-          <button (click)="removeItem(cartItem.productId)" class="btn btn-sm btn-danger ms-2">Eliminar</button>
+          <button (click)="removeItem(cartItem.productId)" class="common-button delete-button ms-2">Eliminar</button>
         </li>
       </ul>
       <div class="cart-total">
         <strong>Total: ${{ getTotal() }}</strong>
       </div>
-      <button (click)="clearCart()" class="btn btn-sm btn-warning mt-3">Vaciar carrito</button>
+      <button (click)="clearCart()" class="common-button mt-3">Vaciar carrito</button>
     </div>
     <ng-template #emptyCart>
       <p>El carrito está vacío.</p>
