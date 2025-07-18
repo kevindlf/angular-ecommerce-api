@@ -35,4 +35,8 @@ export class CartManagementComponent implements OnInit {
   goBack() {
     this.router.navigate(['/account']);
   }
+
+  buy() {
+    this.router.navigate(['/purchase-simulation']);
+  }
 }

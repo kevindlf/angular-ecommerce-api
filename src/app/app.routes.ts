@@ -10,6 +10,7 @@ import { EditAccountComponent } from './pages/edit-account.component';
 import { RegisterPageComponent } from './pages/register-page.component';
 import { AccountLayoutComponent } from './layouts/account-layout.component';
 import { AccountHomePageComponent } from './pages/account-home-page.component';
+import { PurchaseSimulationComponent } from './pages/purchase-simulation.component';
 
 export const routes: Routes = [
   {
@@ -32,5 +33,6 @@ export const routes: Routes = [
   },
   { path: 'account-management', component: AccountManagementComponent },
   { path: 'cart-management', component: CartManagementComponent },
+  { path: 'purchase-simulation', component: PurchaseSimulationComponent },
   { path: 'edit-account', component: EditAccountComponent },
 ];
