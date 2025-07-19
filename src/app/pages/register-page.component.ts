@@ -32,6 +32,7 @@ import { FormsModule } from '@angular/forms';
           </div>
           <div style="display: flex; justify-content: flex-end; align-items: center;">
             <button type="submit" class="common-button">Registrarse</button>
+
           </div>
         </form>
       </div>
