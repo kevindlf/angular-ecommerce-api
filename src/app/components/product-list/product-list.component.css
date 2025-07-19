@@ -272,3 +272,9 @@
     max-height: 40px;
     object-fit: contain;
   }
+
+  .large-payment-icon {
+    max-width: 120px !important;
+    max-height: 60px !important;
+    object-fit: contain !important;
+  }

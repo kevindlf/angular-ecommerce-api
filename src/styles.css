@@ -2,6 +2,8 @@ h1 {
   text-align: center;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 body {
   background-image: url('assets/LadrilloOscuro.jpg');
   background-size: cover;
@@ -10,7 +12,7 @@ body {
   background-attachment: fixed;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Playfair Display', serif;
   overflow-x: hidden;
 }
 
