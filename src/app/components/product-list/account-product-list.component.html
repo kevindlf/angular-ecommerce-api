@@ -31,11 +31,11 @@
     <!-- Mostrar categoría activa cuando hay filtro -->
     <div *ngIf="selectedCategory" class="mb-3">
       <h4>
-        Mostrando productos de: 
+        Mostrando productos de
         <span class="badge bg-primary">
           {{ getCategoryName(selectedCategory) }}
         </span>
-        <button (click)="clearFilters()" class="btn btn-sm btn-outline-secondary ms-2">
+        <button (click)="clearFilters()" class="btn btn-sm btn-outline-secondary ms-2" style="font-family: 'Playfair Display', serif; background-color: #a67c52; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
           Limpiar filtros
         </button>
       </h4>
@@ -56,14 +56,18 @@
               <p class="card-text">{{ product.description | slice:0:100 }}...</p>
               <p class="card-text"><strong>Precio: </strong>${{ product.price | number }}</p>
             </div>
-            <div class="card-footer">
-              <small class="text-muted">
-                Categoría: {{ product.category?.name || 'Sin categoría' }}
-              </small>
-              <button (click)="addToCart(product); $event.stopPropagation()" class="btn btn-primary mt-3 w-100" style="font-size: 1rem; padding: 10px 0;">
-                Agregar al carrito
-              </button>
-            </div>
+<div class="card-footer d-flex flex-column align-items-center">
+  <div class="mb-2">
+    <small class="text-muted">
+      Categoría: {{ product.category?.name || 'Sin categoría' }}
+    </small>
+  </div>
+  <div>
+    <button (click)="addToCart(product); $event.stopPropagation()" style="width: 150px; height: 40px;font-size: 1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; margin-top: 12px;  background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
+      Agregar al carrito
+    </button>
+  </div>
+</div>
           </div>
         </div>
       </div>
@@ -79,7 +83,7 @@
       <div *ngIf="!selectedCategory && !searchTerm">
         No hay productos disponibles
       </div>
-      <button (click)="clearFilters()" class="btn btn-sm btn-info mt-2">
+<button (click)="clearFilters()" class="btn btn-sm btn-info mt-2 show-all-products-button" style="font-family: 'Playfair Display', serif; background-color: #a67c52; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
         Mostrar todos los productos
       </button>
     </div>
