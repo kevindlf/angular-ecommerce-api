@@ -7,15 +7,20 @@
 }
 
 .common-button {
-  background-color: #a67c52;
-  border: 1px solid #a67c52;
-  color: white;
-  font-family: 'Playfair Display', serif;
+  width: 140px;
+  height: 40px;
+  font-size: 1.1rem;
   font-weight: normal;
   border-radius: 8px;
-  padding: 0.5rem 1rem;
   cursor: pointer;
   box-shadow: none;
+  margin: 0 0px;
+  background-color: #a67c52;
+  color: white;
+  border: none;
+  font-family: 'Playfair Display', serif;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .common-button:disabled {
