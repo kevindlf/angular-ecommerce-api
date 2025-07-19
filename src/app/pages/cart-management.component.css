@@ -7,7 +7,7 @@
 
 .content-box {
   padding: 20px;
-  max-width: 500px;
+  max-width: 750px;
   width: 100%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 8px;
@@ -73,4 +73,8 @@ li {
   margin-top: 10px;
   font-size: 1.1rem;
   font-weight: bold;
+}
+
+.button-group {
+  margin-top: 20px;
 }

@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
       <div class="content-box">
         <h2>Administrar Cuenta</h2>
         <div>
-          <button (click)="editAccount()" class="common-button">Editar Cuenta</button>
-          <button (click)="deleteAccount()" class="common-button delete-button">Eliminar Cuenta</button>
-          <button (click)="goBack()" class="common-button">Volver</button>
+        <button (click)="goBack()" class="common-button">Volver</button>
+        <button (click)="deleteAccount()" class="common-button delete-button">Eliminar Cuenta</button>
+        <button (click)="editAccount()" class="common-button">Editar Cuenta</button>
         </div>
       </div>
     </div>

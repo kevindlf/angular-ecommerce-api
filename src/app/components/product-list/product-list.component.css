@@ -92,3 +92,23 @@
 .scroll-top-button:hover {
   background-color: #8c6640;
 }
+
+.custom-button {
+  background-color: #a67c52;
+  color: white;
+  padding: 12px 32px;
+  font-size: 1.2rem;
+  font-family: 'Playfair Display', serif;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  margin-left: 0.5rem;
+}
+
+.custom-button.show-all {
+  margin-left: 0;
+  margin-top: 0.5rem;
+}

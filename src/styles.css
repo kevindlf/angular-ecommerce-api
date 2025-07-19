@@ -44,6 +44,10 @@ img {
   letter-spacing: 1px;
 }
 
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
 /* Buscador y selector debajo, a la derecha */
 .row.mb-4 {
   display: flex;
@@ -220,6 +224,7 @@ input[type="number"]:focus {
   border-radius: 8px;
   font-weight: 600;
   transition: background-color 0.3s ease;
+  font-family: 'Playfair Display', serif;
 }
 
 .btn-submit:hover {

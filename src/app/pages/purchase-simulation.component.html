@@ -1,34 +1,41 @@
-<div class="container">
-  <div class="content-box">
-    <h2>Simulación de Compra</h2>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Playfair Display', serif;">
+  <div style="padding: 20px; max-width: 750px; width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background-color: white;">
+    <h2 style="color: #a67c52; font-size: 2rem;">Simulación de Compra</h2>
     <div *ngIf="cartItems.length > 0; else emptyCart">
-      <ul>
+      <ul style="list-style-type: none; padding-left: 0;">
         <li *ngFor="let item of cartItems">
           <span>{{ item.title }} (x{{ item.quantity }}) - ${{ item.price * item.quantity }}</span>
         </li>
       </ul>
-      <div class="cart-total">
+      <div class="cart-total" style="margin-bottom: 15px;">
         <strong>Total: ${{ getTotal() }}</strong>
       </div>
-      <form (ngSubmit)="confirmPurchase()" #purchaseForm="ngForm" class="purchase-form">
-        <div class="form-group">
-          <label for="cardNumber">Número de tarjeta</label>
-          <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="cardNumber" required minlength="12" maxlength="19" pattern="\\d+" class="form-control" />
+      <form (ngSubmit)="confirmPurchase()" #purchaseForm="ngForm" style="text-align: left; max-width: 700px; width: 100%;">
+        <div style="margin-bottom: 15px;">
+          <label for="cardNumber" style="display: block; text-align: left; margin-bottom: 5px;">Número de tarjeta</label>
+          <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="cardNumber" required minlength="12" maxlength="19" pattern="\\d+" class="edit-account-input" style="width: 100%; height: 15px;" />
         </div>
-        <div class="form-group mt-2">
-          <label for="email">Correo electrónico</label>
-          <input type="email" id="email" name="email" [(ngModel)]="email" required email class="form-control" />
+        <div style="margin-bottom: 15px;">
+          <label for="email" style="display: block; text-align: left; margin-bottom: 5px;">Correo electrónico</label>
+          <input type="email" id="email" name="email" [(ngModel)]="email" required email class="edit-account-input" style="width: 100%; height: 15px;" />
         </div>
-        <div class="form-group mt-2">
-          <label for="password">Contraseña</label>
-          <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6" class="form-control" />
+        <div style="margin-bottom: 15px;">
+          <label for="password" style="display: block; text-align: left; margin-bottom: 5px;">Contraseña</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6" class="edit-account-input" style="width: 100%; height: 15px;" />
         </div>
-        <button type="submit" class="btn btn-primary mt-3">Confirmar Compra</button>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <button (click)="goBack()" type="button" class="common-button" style="width: 130px; height: 40px;font-size: 1.1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; margin: 0 100px; background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
+            Volver
+          </button>
+          <button type="submit" [disabled]="purchaseForm.invalid" class="common-button" style="width: 160px; height: 40px;font-size: 1.1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; margin: 0 100px; background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
+            Confirmar compra
+          </button>
+          
+        </div>
       </form>
     </div>
     <ng-template #emptyCart>
       <p>El carrito está vacío.</p>
     </ng-template>
-    <button (click)="goBack()" class="common-button mt-3">Volver</button>
   </div>
 </div>

@@ -12,12 +12,14 @@
       <div class="cart-total">
         <strong>Total: ${{ getTotal() }}</strong>
       </div>
-      <button (click)="clearCart()" class="common-button mt-3">Vaciar carrito</button>
+      <div class="button-group">
+        <button (click)="goBack()" class="common-button">Volver</button>
+        <button (click)="clearCart()" class="common-button delete-button">Vaciar carrito</button>
+        <button (click)="buy()" class="common-button">Comprar</button>
+      </div>
     </div>
     <ng-template #emptyCart>
       <p>El carrito está vacío.</p>
     </ng-template>
-    <button (click)="goBack()" class="common-button mt-3">Volver</button>
-    <button (click)="buy()" class="common-button mt-3 ms-2">Comprar</button>
   </div>
 </div>

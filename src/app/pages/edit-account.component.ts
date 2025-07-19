@@ -52,10 +52,10 @@ import { FormsModule } from '@angular/forms';
           </div>
 
           <div style="display: flex; justify-content: space-between; align-items: center;">
-            <button (click)="goBack()" type="button" class="common-button" style="background-color: #a67c52; border-color: #a67c52; color: white; font-weight: normal; font-family: 'Playfair Display', serif; border-radius: 8px; box-shadow: none;">
+            <button (click)="goBack()" type="button" class="common-button" style="background-color: #a67c52; border-color: #a67c52; color: white; font-weight: normal; font-family: 'Playfair Display', serif; border-radius: 8px; box-shadow: none;font-size: 1.1rem;">
               Volver
             </button>
-            <button type="submit" [disabled]="accountForm.invalid" class="common-button" style="background-color: #a67c52; border-color: #a67c52; color: white; font-weight: normal; font-family: 'Playfair Display', serif; border-radius: 8px; box-shadow: none;">
+            <button type="submit" [disabled]="accountForm.invalid" class="common-button" style="background-color: #a67c52; border-color: #a67c52; color: white; font-weight: normal; font-family: 'Playfair Display', serif; border-radius: 8px; box-shadow: none;font-size: 1.1rem;">
               Actualizar
             </button>
           </div>

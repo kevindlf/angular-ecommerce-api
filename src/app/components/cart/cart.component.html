@@ -11,15 +11,21 @@
     <div class="cart-total">
       <strong>Total: ${{ getTotal() }}</strong>
     </div>
-    <button (click)="clearCart()" class="common-button">Vaciar carrito</button>
+    <div class="button-group">
+      <button (click)="clearCart()" class="common-button">Vaciar carrito</button>
+      <button (click)="goBack()" class="common-button">Volver</button>
+      <button (click)="goToShop()" class="common-button">Comprar</button>
+    </div>
   </div>
 </div>
 <ng-template #emptyCart>
   <div class="container">
-    <div class="content-box">
+  <div class="content-box">
       <p>El carrito está vacío.</p>
-      <button (click)="goBack()" class="common-button">Volver</button>
-      <button (click)="goToShop()" class="common-button">Comprar</button>
+      <div class="button-group">
+        <button (click)="goToShop()" class="common-button">Comprar</button>
+        <button (click)="goBack()" class="common-button">Volver</button>
+      </div>
     </div>
   </div>
 </ng-template>

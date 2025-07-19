@@ -1,0 +1,12 @@
+Confirmar Compra
+          </button>
+          <button (click)="goBack()" type="button" class="common-button" style="background-color: #a67c52; border-color: #a67c52; color: white; font-weight: normal; font-family: 'Playfair Display', serif; border-radius: 8px; box-shadow: none;">
+            Volver
+          </button>
+=======
+          <button type="submit" [disabled]="purchaseForm.invalid" class="common-button delete-button">
+            Confirmar Compra
+          </button>
+          <button (click)="goBack()" type="button" class="common-button delete-button">
+            Volver
+          </button>

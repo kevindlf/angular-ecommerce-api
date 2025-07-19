@@ -75,22 +75,17 @@ export class ProductListCopyComponent implements OnInit {
 
   handleSearch(searchTerm: string): void {
     this.searchTerm = searchTerm;
-    
+
     if (!searchTerm.trim()) {
       this.applyFilters();
       return;
     }
 
-    const normalizedTerm = this.normalizeSearchTerm(searchTerm);
-    
-    this.filteredProducts = this.products.filter(product => {
-      const searchFields = [
-        product.title,
-        product.description,
-        product.category.name
-      ].join(' ');
+    const normalizedTerms = this.normalizeSearchTerm(searchTerm);
 
-      return this.normalizeText(searchFields).includes(normalizedTerm);
+    this.filteredProducts = this.products.filter(product => {
+      const normalizedTitle = this.normalizeText(product.title);
+      return normalizedTerms.some(term => normalizedTitle.includes(term));
     });
   }
 
@@ -101,26 +96,24 @@ export class ProductListCopyComponent implements OnInit {
 
   applyFilters(): void {
     let result = [...this.products];
-    
+
     if (this.selectedCategory) {
       const category = this.categories.find(c => c.id === this.selectedCategory);
       if (category) {
-        result = result.filter(p => p.category.name === category.name);
+        result = result.filter(p => 
+          this.normalizeText(p.category.name) === this.normalizeText(category.name)
+        );
       }
     }
-    
+
     if (this.searchTerm.trim()) {
-      const normalizedTerm = this.normalizeSearchTerm(this.searchTerm);
+      const normalizedTerms = this.normalizeSearchTerm(this.searchTerm);
       result = result.filter(product => {
-        const searchFields = [
-          product.title,
-          product.description,
-          product.category.name
-        ].join(' ');
-        return this.normalizeText(searchFields).includes(normalizedTerm);
+        const normalizedTitle = this.normalizeText(product.title);
+        return normalizedTerms.some(term => normalizedTitle.includes(term));
       });
     }
-    
+
     this.filteredProducts = result;
   }
 
@@ -140,31 +133,11 @@ export class ProductListCopyComponent implements OnInit {
     return category 
       ? this.products.filter(p => p.category.name === category.name).length 
       : 0;
-  }
+  }/*  */
 
-  private normalizeSearchTerm(term: string): string {
-    const dictionary: {[key: string]: string[]} = {
-      'ropa': ['clothes', 'clothing', 'apparel'],
-      'electronica': ['electronics', 'devices', 'tech'],
-      'mueble': ['furniture', 'furnishing'],
-      'zapato': ['shoes', 'footwear', 'sneakers'],
-      'auricular': ['headphones', 'earphones'],
-      'inalambrico': ['wireless', 'bluetooth'],
-      'camiseta': ['shirt', 't-shirt'],
-      'pantalon': ['pants', 'trousers'],
-      'computador': ['computer', 'pc']
-    };
-
+  private normalizeSearchTerm(term: string): string[] {
     const normalizedTerm = this.normalizeText(term);
-    let searchTerms = [normalizedTerm];
-
-    Object.keys(dictionary).forEach(esTerm => {
-      if (normalizedTerm.includes(esTerm)) {
-        searchTerms = [...searchTerms, ...dictionary[esTerm]];
-      }
-    });
-
-    return searchTerms.join('|');
+    return [normalizedTerm];
   }
 
   private normalizeText(text: string): string {

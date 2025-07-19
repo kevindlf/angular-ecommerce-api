@@ -31,7 +31,7 @@
         <span class="badge bg-primary">
           {{ getCategoryName(selectedCategory) }}
         </span>
-        <button (click)="clearFilters()" class="btn btn-sm btn-outline-secondary ms-2">
+        <button (click)="clearFilters()" class="custom-button">
           Limpiar filtros
         </button>
       </h4>
@@ -72,7 +72,7 @@
       <div *ngIf="!selectedCategory && !searchTerm">
         No hay productos disponibles
       </div>
-      <button (click)="clearFilters()" class="btn btn-sm btn-info mt-2">
+      <button (click)="clearFilters()" class="custom-button show-all">
         Mostrar todos los productos
       </button>
     </div>

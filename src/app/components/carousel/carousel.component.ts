@@ -1,9 +1,11 @@
 import { Component, Input, OnChanges, SimpleChanges, OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })

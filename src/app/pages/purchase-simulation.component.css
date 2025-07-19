@@ -1,0 +1,139 @@
+.container {
+  padding: 25px;
+  max-width: 400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  background-color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+  color: #a67c52;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 15px;
+}
+
+.cart-total {
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form label {
+  text-align: center;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 300px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #a67c52;
+  box-shadow: 0 0 6px rgba(166, 124, 82, 0.5);
+  outline: none;
+}
+
+.button {
+  padding: 12px 0;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background-color: #a67c52;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  width: 48%;
+}
+  
+.button:hover:not(:disabled) {
+  background-color: #8c6239;
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.common-button {
+  width: auto;
+  min-width: 120px;
+  padding: 0 15px;
+  height: 40px;
+  font-size: 1.1rem;
+  font-weight: normal;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: none;
+  margin: 0 5px;
+  background-color: #a67c52;
+  color: white;
+  border: none;
+  font-family: 'Playfair Display', serif;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.delete-button {
+  width: 160px;
+  height: 40px;
+  font-size: 1.1rem;
+  font-weight: normal;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: none;
+  background-color: #a67c52;
+  color: white;
+}
