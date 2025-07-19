@@ -77,7 +77,7 @@
   margin: 0 8px;
   background-color: #d3c4a8;
   border-radius: 50%;
-  display: inline-block;
+  display: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
