@@ -20,13 +20,10 @@ import { RouterModule } from '@angular/router';
           routerLink="/cart-management"
           class="common-button"
           style="padding: 8px 12px; border-radius: 4px; cursor: pointer; background-color: #a67c52; color: white; border: none; display: inline-flex; align-items: center; text-decoration: none; margin-right: 8px;">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 6px;">
-            <path d="M3 6h18l-2 9H5L3 6z" stroke="white" stroke-width="2" fill="none"/>
-            <path d="M7 6v9" stroke="white" stroke-width="2"/>
-            <path d="M11 6v9" stroke="white" stroke-width="2"/>
-            <path d="M15 6v9" stroke="white" stroke-width="2"/>
-            <circle cx="7" cy="20" r="1" fill="white"/>
-            <circle cx="17" cy="20" r="1" fill="white"/>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 6px;">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
           </svg>
           Carrito
         </a>
