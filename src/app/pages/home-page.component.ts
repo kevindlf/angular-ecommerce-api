@@ -2,11 +2,13 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ProductListComponent } from '../components/product-list/product-list.component';
 import { CarouselComponent } from '../components/carousel/carousel.component';
 import { ProductService } from '../services/product.service';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faTruck, faCreditCard, faUndo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [ProductListComponent, CarouselComponent],
+  imports: [ProductListComponent, CarouselComponent, FontAwesomeModule],
   template: `
     <app-product-list [images]="carouselImages"></app-product-list>
   `
@@ -22,7 +24,13 @@ export class HomePageComponent implements OnInit {
     '/assets/carrousel/image8.png'
   ];
 
-  constructor(private productService: ProductService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private productService: ProductService,
+    private cdr: ChangeDetectorRef,
+    private faIconLibrary: FaIconLibrary
+  ) {
+    this.faIconLibrary.addIcons(faTruck, faCreditCard, faUndo);
+  }
 
   ngOnInit(): void {
     // Commenting out dynamic loading to use static images
