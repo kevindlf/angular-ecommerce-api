@@ -2,13 +2,14 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { CommonModule } from '@angular/common';
 import { ProductFilterComponent } from '../components/product-filter/product-filter.component';
+import { CartService } from '../services/cart.service'; // Asegurate de tener este servicio disponible
 
 @Component({
   selector: 'app-new-product-page',
   standalone: true,
   imports: [CommonModule, ProductFilterComponent],
   templateUrl: './new-product-page.component.html',
- 
+  styleUrls: ['./new-product-page.component.css']
 })
 export class NewProductPageComponent implements OnInit {
   products: any[] = [];
@@ -25,7 +26,11 @@ export class NewProductPageComponent implements OnInit {
   searchTerm = '';
   selectedCategory: number | null = null;
 
-  constructor(private productService: ProductService, private cdr: ChangeDetectorRef) { }
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService, // necesario si usás carrito
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -126,6 +131,14 @@ export class NewProductPageComponent implements OnInit {
   getCategoryName(id: number): string {
     const category = this.categories.find(c => c.id === id);
     return category?.name || 'Desconocida';
+  }
+
+  addToCart(product: any): void {
+    this.cartService.addToCart(product);
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   private normalizeSearchTerm(term: string): string {

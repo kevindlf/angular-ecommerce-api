@@ -1,6 +1,14 @@
 <div class="container mt-4">
-  
 
+  <div class="titulo-destacado" style="text-align: center; margin: 60px auto 20px auto; max-width: 900px;">
+    <h1 style="font-family: 'Playfair Display', serif;">Explorá nuestros productos</h1>
+  </div>
+
+  <app-product-filter 
+    [categories]="categories"
+    (searchEvent)="handleSearch($event)"
+    (categoryFilterEvent)="handleCategoryFilter($event)">
+  </app-product-filter>
 
   <div *ngIf="loading" class="text-center mt-5">
     <div class="spinner-border" role="status">
