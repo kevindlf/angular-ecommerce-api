@@ -4,11 +4,12 @@ import { CommonModule, DecimalPipe, SlicePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ProductFilterComponent } from '../product-filter/product-filter.component';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProductFilterComponent, CarouselComponent, SlicePipe, DecimalPipe],
+  imports: [CommonModule, RouterModule, ProductFilterComponent, CarouselComponent, SlicePipe, DecimalPipe, FontAwesomeModule],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
