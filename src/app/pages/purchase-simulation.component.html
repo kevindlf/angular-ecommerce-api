@@ -1,37 +1,109 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Playfair Display', serif;">
-  <div style="padding: 20px; max-width: 750px; width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background-color: white;">
-    <h2 style="color: #a67c52; font-size: 2rem;">Simulación de Compra</h2>
+<div class="purchase-simulation-background">
+  <div class="purchase-simulation-container">
+    <h2>Simulación de Compra</h2>
     <div *ngIf="cartItems.length > 0; else emptyCart">
-      <ul style="list-style-type: none; padding-left: 0;">
+      <ul class="cart-items-list">
         <li *ngFor="let item of cartItems">
-          <span>{{ item.title }} (x{{ item.quantity }}) - ${{ item.price * item.quantity }}</span>
+          {{ item.title }} (x{{ item.quantity }}) - ${{ item.price * item.quantity }}
         </li>
       </ul>
-      <div class="cart-total" style="margin-bottom: 15px;">
+      <div class="cart-total">
         <strong>Total: ${{ getTotal() }}</strong>
       </div>
-      <form (ngSubmit)="confirmPurchase()" #purchaseForm="ngForm" style="text-align: left; max-width: 700px; width: 100%;">
-        <div style="margin-bottom: 15px;">
-          <label for="cardNumber" style="display: block; text-align: left; margin-bottom: 5px;">Número de tarjeta</label>
-          <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="cardNumber" required minlength="12" maxlength="19" pattern="\\d+" class="edit-account-input" style="width: 100%; height: 15px;" />
+<form (ngSubmit)="confirmPurchase()" #purchaseForm="ngForm" class="purchase-form">
+        <label for="cardholderName">Nombre del titular</label>
+        <input type="text" id="cardholderName" name="cardholderName" [(ngModel)]="cardholderName" required class="form-input" />
+        <div *ngIf="purchaseForm.submitted && !cardholderName" class="error-message">
+          <small>El nombre del titular es obligatorio.</small>
         </div>
-        <div style="margin-bottom: 15px;">
-          <label for="email" style="display: block; text-align: left; margin-bottom: 5px;">Correo electrónico</label>
-          <input type="email" id="email" name="email" [(ngModel)]="email" required email class="edit-account-input" style="width: 100%; height: 15px;" />
+
+        <label for="cardType">Tipo de tarjeta</label>
+        <select id="cardType" name="cardType" [(ngModel)]="cardType" required class="form-select">
+          <option value="Visa">Visa</option>
+          <option value="Mastercard">Mastercard</option>
+          <option value="American Express">American Express</option>
+          <option value="Diners Club">Diners Club</option>
+          <option value="Discover">Discover</option>
+          <option value="JCB">JCB</option>
+        </select>
+
+        <label for="cardNumber">Número de tarjeta</label>
+        <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="cardNumber" required class="form-input" minlength="13" maxlength="16" pattern="\\d{13,16}" />
+        <div *ngIf="purchaseForm.submitted && (!cardNumber || cardNumber.length < 13 || cardNumber.length > 16)" class="error-message">
+          <small>Por favor, ingrese un número de tarjeta válido de 13 a 16 dígitos.</small>
         </div>
-        <div style="margin-bottom: 15px;">
-          <label for="password" style="display: block; text-align: left; margin-bottom: 5px;">Contraseña</label>
-          <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6" class="edit-account-input" style="width: 100%; height: 15px;" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="expirationMonth">Mes de vencimiento</label>
+            <input type="text" id="expirationMonth" name="expirationMonth" placeholder="MM" [(ngModel)]="expirationMonth" required class="form-input" pattern="^(0[1-9]|1[0-2])$" maxlength="2" />
+            <div *ngIf="purchaseForm.submitted && (!expirationMonth || !(expirationMonth + '').match('^(0[1-9]|1[0-2])$'))" class="error-message">
+              <small>Ingrese un mes válido (01-12).</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="expirationYear">Año de vencimiento</label>
+            <input type="text" id="expirationYear" name="expirationYear" placeholder="YY" [(ngModel)]="expirationYear" required class="form-input" pattern="^\\d{2}$" maxlength="2" />
+            <div *ngIf="purchaseForm.submitted && (!expirationYear || !(expirationYear + '').match('^\\d{2}$'))" class="error-message">
+              <small>Ingrese un año válido (dos dígitos).</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="securityCode">CVV</label>
+            <input type="text" id="securityCode" name="securityCode" [(ngModel)]="securityCode" required class="form-input" maxlength="3" />
+            <div *ngIf="purchaseForm.submitted && (!securityCode || securityCode.length < 3)" class="error-message">
+              <small>Por favor, ingrese un código de seguridad válido.</small>
+            </div>
+          </div>
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <button (click)="goBack()" type="button" class="common-button" style="width: 130px; height: 40px;font-size: 1.1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; margin: 0 100px; background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
-            Volver
-          </button>
-          <button type="submit" [disabled]="purchaseForm.invalid" class="common-button" style="width: 160px; height: 40px;font-size: 1.1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; margin: 0 100px; background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
-            Confirmar compra
-          </button>
-          
+
+        <label for="dni">DNI</label>
+        <input type="text" id="dni" name="dni" [(ngModel)]="dni" required class="form-input" />
+        <div *ngIf="purchaseForm.submitted && !dni" class="error-message">
+          <small>El DNI es obligatorio.</small>
         </div>
+
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required class="form-input" />
+        <div *ngIf="purchaseForm.submitted && (!email || !validateEmail(email))" class="error-message">
+          <small>Por favor, ingrese un correo electrónico válido.</small>
+        </div>
+
+        <div class="form-row">
+  <div class="form-group">
+    <label for="phone1">Teléfono</label>
+    <input
+      type="text"
+      id="phone1"
+      name="phone1"
+      [(ngModel)]="phone1"
+      required
+      class="form-input"
+      maxlength="10"
+      pattern="^[0-9]{7,10}$"
+      title="Debe tener entre 7 y 10 dígitos numéricos" />
+
+    <div *ngIf="purchaseForm.submitted && (!phone1 || !phone1.match('^[0-9]{7,10}$'))" class="error-message">
+      <small>Ingrese un teléfono válido (7 a 10 dígitos).</small>
+    </div>
+  </div>
+</div>
+
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="terms" name="terms" [(ngModel)]="termsAccepted" required />
+          <label for="terms">Acepto los términos y condiciones</label>
+          <div *ngIf="purchaseForm.submitted && !termsAccepted" class="error-message">
+            <small>Debe aceptar los términos y condiciones.</small>
+          </div>
+        </div>
+
+        <div class="form-buttons">
+          <button type="button" (click)="goBack()" class="button back-button">Volver</button>
+<button type="submit" class="button confirm-button">Confirmar compra</button>
+        </div>
+       
       </form>
     </div>
     <ng-template #emptyCart>

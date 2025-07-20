@@ -27,6 +27,10 @@ export class AccountManagementComponent {
     this.router.navigate(['/edit-account']);
   }
 
+  goToMyPurchases() {
+    this.router.navigate(['/my-purchases']);
+  }
+
   async deleteAccount() {
     const confirmed = confirm('¿Está seguro que desea eliminar su cuenta? Esta acción no se puede deshacer.');
     if (confirmed) {

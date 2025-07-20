@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CartService, CartItem } from '../services/cart.service';
 import { FormsModule } from '@angular/forms';
-import { collection, query, where, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { auth, db } from '../../firebase/firebase';
 
 @Component({
@@ -12,12 +11,24 @@ import { auth, db } from '../../firebase/firebase';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './purchase-simulation.component.html',
+  styleUrls: ['./purchase-simulation.component.css']
 })
 export class PurchaseSimulationComponent implements OnInit {
   cartItems: CartItem[] = [];
   cardNumber: string = '';
   email: string = '';
-  password: string = '';
+  cardholderName: string = '';
+  cardType: string = 'Visa';
+  expirationDate: string = '';
+  expirationMonth: string = '';
+  expirationYear: string = '';
+  securityCode: string = '';
+  dni: string = '';
+  billingAddress: string = '';
+  phone1: string = '';
+  phone2: string = '';
+  termsAccepted: boolean = false;
+
   private cartService = inject(CartService);
   private router = inject(Router);
   private firestore = db;
@@ -33,37 +44,97 @@ export class PurchaseSimulationComponent implements OnInit {
     return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
+  validateEmail(email: string): boolean {
+    const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    return re.test(email);
+  }
+
+  isCardExpired(): boolean {
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+    const currentYear = now.getFullYear() % 100;
+
+    const expMonth = parseInt(this.expirationMonth, 10);
+    const expYear = parseInt(this.expirationYear, 10);
+
+    if (isNaN(expMonth) || isNaN(expYear)) return false;
+
+    return expYear < currentYear || (expYear === currentYear && expMonth < currentMonth);
+  }
+
   async confirmPurchase() {
     console.log('confirmPurchase called');
-    if (!this.cardNumber || this.cardNumber.length < 12) {
-      alert('Por favor, ingrese un número de tarjeta válido.');
+
+    if (!this.cardholderName) {
+      alert('Por favor, ingrese el nombre del titular.');
+      return;
+    }
+    if (!this.cardType) {
+      alert('Por favor, seleccione el tipo de tarjeta.');
+      return;
+    }
+    if (!this.cardNumber || !/^\d{13,16}$/.test(this.cardNumber)) {
+      alert('Por favor, ingrese un número de tarjeta válido de 13 a 16 dígitos.');
+      return;
+    }
+    if (!this.expirationMonth || !/^(0[1-9]|1[0-2])$/.test(this.expirationMonth)) {
+      alert('Por favor, ingrese un mes de vencimiento válido (01-12).');
+      return;
+    }
+    if (!this.expirationYear || !/^\d{2}$/.test(this.expirationYear)) {
+      alert('Por favor, ingrese un año de vencimiento válido (dos dígitos).');
+      return;
+    }
+    if (this.isCardExpired()) {
+      alert('La tarjeta ingresada está vencida. Usá otra.');
+      return;
+    }
+    if (!this.securityCode || this.securityCode.length < 3) {
+      alert('Por favor, ingrese un código de seguridad válido.');
+      return;
+    }
+    if (!this.dni) {
+      alert('Por favor, ingrese el DNI.');
       return;
     }
     if (!this.email || !this.validateEmail(this.email)) {
       alert('Por favor, ingrese un correo electrónico válido.');
       return;
     }
-    if (!this.password || this.password.length < 6) {
-      alert('Por favor, ingrese una contraseña válida.');
+    if (!this.phone1) {
+      alert('Por favor, ingrese al menos un teléfono.');
+      return;
+    }
+    if (!this.termsAccepted) {
+      alert('Debe aceptar los términos y condiciones.');
       return;
     }
 
     try {
-      // Authenticate user with email and password
-      const userCredential = await signInWithEmailAndPassword(this.auth, this.email, this.password);
-      const user = userCredential.user;
+      const user = this.auth.currentUser;
+      console.log('Saving purchase for user:', user?.uid);
 
       if (!user) {
-        alert('Credenciales inválidas.');
+        alert('Debe iniciar sesión para realizar la compra.');
         return;
       }
 
-      // Save purchase under the user document
       const purchasesRef = collection(this.firestore, `users/${user.uid}/purchases`);
       await addDoc(purchasesRef, {
-        items: this.cartItems,
+        items: this.cartItems.map(item => ({
+          name: item.title,
+          quantity: item.quantity,
+          price: item.price
+        })),
         total: this.getTotal(),
-        cardNumber: this.cardNumber,
+        cardholderName: this.cardholderName,
+        cardType: this.cardType,
+        expirationDate: `${this.expirationMonth}/${this.expirationYear}`,
+        securityCode: this.securityCode,
+        dni: this.dni,
+        email: this.email,
+        phone1: this.phone1,
+        phone2: this.phone2,
         createdAt: serverTimestamp()
       });
 
@@ -75,11 +146,7 @@ export class PurchaseSimulationComponent implements OnInit {
     }
   }
 
-  validateEmail(email: string): boolean {
-    const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    return re.test(email);
-  }
-
+  
   goBack() {
     this.router.navigate(['/cart-management']);
   }

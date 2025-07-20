@@ -8,7 +8,7 @@
 
 .content-box {
   padding: 20px;
-  max-width: 500px;
+  max-width: 600px;
   width: 100%;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 8px;
@@ -47,4 +47,11 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: none;
+}
+
+.content-box > div {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
 }
