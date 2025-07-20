@@ -4,8 +4,10 @@
     <div *ngIf="cartItems.length > 0; else emptyCart">
       <ul>
         <li *ngFor="let cartItem of cartItems">
-          <img *ngIf="cartItem.image" [src]="cartItem.image" alt="{{cartItem.title}}" style="width: 50px; height: 50px; object-fit: contain; margin-right: 10px;" />
-          <span>{{ cartItem.title }} (x{{ cartItem.quantity }}) - ${{ cartItem.price * cartItem.quantity }}</span>
+          <div class="product-info">
+            <img *ngIf="cartItem.image" [src]="cartItem.image" alt="{{cartItem.title}}" style="width: 50px; height: 50px; object-fit: contain; margin-right: 10px;" />
+            <span>{{ cartItem.title }} (x{{ cartItem.quantity }}) - ${{ cartItem.price * cartItem.quantity }}</span>
+          </div>
           <button (click)="removeItem(cartItem.productId)" class="common-button delete-button ms-2">Eliminar</button>
         </li>
       </ul>

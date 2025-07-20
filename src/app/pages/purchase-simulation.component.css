@@ -1,7 +1,9 @@
 .purchase-simulation-background {
   background-image: url('/assets/LadrilloOscuro.jpg');
-  background-repeat: repeat;
-  background-size: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -12,7 +14,7 @@
 .purchase-simulation-container {
   background-color: white;
   padding: 40px 60px 60px 60px;
-  max-width: 460px;
+  max-width: 650px;
   width: 100%;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0,0,0,0.15);
@@ -72,32 +74,7 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.button {
-  width: 140px;
-  height: 40px;
-  font-size: 1.1rem;
-  font-weight: normal;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: none;
-  margin: 0 0px;
-  background-color: #a67c52;
-  color: white;
-  border: none;
-  font-family: 'Playfair Display', serif;
-  white-space: nowrap;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
 
-.button:hover:not(:disabled) {
-  background-color: #8c6239;
-}
-
-.button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
 
 .form-input:focus, .form-select:focus {
   border-color: #a67c52;
@@ -135,6 +112,8 @@
 .form-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 20px; /* nuevo */
+  margin-top: 40px; /* opcional para separación final */
 }
 
 .button {
@@ -143,11 +122,11 @@
   border: none;
   border-radius: 12px;
   padding: 14px 0;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
-  width: 140px;
-  height: 40px;
+  width: 200px;        /* nuevo: ancho fijo como en la imagen */
+  height: 50px;        /* nuevo: alto fijo */
   font-family: 'Playfair Display', serif;
   transition: background-color 0.3s ease;
   white-space: nowrap;
@@ -155,6 +134,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+.button-primary {
+  background-color: #a67c52;
+  color: white;
+}
+
+.button-secondary {
+  background-color: #c9b59a;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #8c6239;
+}
+
+.button-secondary:hover {
+  background-color: #b39b7a;
 }
 
 .button:hover:not(:disabled) {
@@ -255,25 +253,3 @@
   justify-content: space-between;
 }
 
-.button {
-  background-color: #a67c52;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 14px 0;
-  font-size: 1.3rem;
-  font-weight: 600;
-  cursor: pointer;
-  width: 48%;
-  font-family: 'Playfair Display', serif;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover:not(:disabled) {
-  background-color: #8c6239;
-}
-
-.button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
-}

@@ -58,8 +58,14 @@ ul {
 li {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   justify-content: space-between;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .cart-item-image {
