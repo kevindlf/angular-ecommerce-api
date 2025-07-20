@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -30,9 +31,9 @@ import { FormsModule } from '@angular/forms';
             <label for="fechaNacimiento" style="display: block; margin-bottom: 5px; text-align: left;">Fecha de nacimiento</label>
             <input id="fechaNacimiento" type="date" [(ngModel)]="fechaNacimiento" name="fechaNacimiento" required class="edit-account-input" />
           </div>
-          <div style="display: flex; justify-content: flex-end; align-items: center;">
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 500px; margin: 0 0px; height: 40px; gap: 60px;">
+            <button type="button" class="common-button" (click)="volver()">Volver</button>
             <button type="submit" class="common-button">Registrarse</button>
-
           </div>
         </form>
       </div>
@@ -47,7 +48,8 @@ export class RegisterPageComponent {
 
   constructor(
     private authService: AuthService,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router: Router
   ) {}
 
   private calcularEdad(fechaNacimiento: string): number {
@@ -72,5 +74,9 @@ export class RegisterPageComponent {
     } catch (error: any) {
       alert('Error: ' + error.message);
     }
+  }
+
+  volver() {
+    this.router.navigate(['/']); // Navigate to home or previous page as needed
   }
 }
