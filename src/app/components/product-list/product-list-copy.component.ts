@@ -75,18 +75,7 @@ export class ProductListCopyComponent implements OnInit {
 
   handleSearch(searchTerm: string): void {
     this.searchTerm = searchTerm;
-
-    if (!searchTerm.trim()) {
-      this.applyFilters();
-      return;
-    }
-
-    const normalizedTerms = this.normalizeSearchTerm(searchTerm);
-
-    this.filteredProducts = this.products.filter(product => {
-      const normalizedTitle = this.normalizeText(product.title);
-      return normalizedTerms.some(term => normalizedTitle.includes(term));
-    });
+    this.applyFilters();
   }
 
   handleCategoryFilter(categoryId: number | null): void {
