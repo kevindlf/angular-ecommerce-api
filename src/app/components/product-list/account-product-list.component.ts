@@ -32,6 +32,9 @@ export class AccountProductListComponent implements OnInit {
   searchTerm = '';
   selectedCategory: number | null = null;
 
+  showConfirmation = false;
+  confirmationMessage = '';
+
   private cartService = inject(CartService);
   private cdr: ChangeDetectorRef;
 
@@ -168,6 +171,15 @@ export class AccountProductListComponent implements OnInit {
       image: product.images?.[0] || ''
     };
     this.cartService.addToCart(item);
+
+    this.confirmationMessage = `"${product.title}" se agregó al carrito.`;
+    this.showConfirmation = true;
+    this.cdr.detectChanges();
+  }
+
+  dismissConfirmation(): void {
+    this.showConfirmation = false;
+    this.cdr.detectChanges();
   }
 
   increaseQuantity(product: any): void {
