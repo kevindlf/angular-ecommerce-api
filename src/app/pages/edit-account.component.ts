@@ -10,25 +10,27 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
   styleUrls: ['./edit-account.component.css'],
   template: `
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Playfair Display', serif;">
-      <div style="padding: 20px; max-width: 500px; width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background-color: white;">
-        <h2 style="color: #a67c52; font-size: 2rem;">Actualizar Cuenta</h2>
-        <form (ngSubmit)="updateAccount()" #accountForm="ngForm" style="text-align: left;">
-          <div style="margin-bottom: 15px;">
-            <label for="email" style="display: block; text-align: left; margin-bottom: 5px;">Email:</label>
+    <div class="edit-account-container">
+      <div class="edit-account-box">
+        <h2 class="edit-account-title">Actualizar Cuenta</h2>
+        <form (ngSubmit)="updateAccount()" #accountForm="ngForm" class="edit-account-form">
+          
+          <!-- Email -->
+          <div class="edit-account-form-group">
+            <label class="edit-account-label" for="email">Email:</label>
             <input
               type="email"
               id="email"
               name="email"
               [(ngModel)]="email"
               required
-              email
               class="edit-account-input"
             />
           </div>
 
-          <div style="margin-bottom: 15px;">
-            <label for="password" style="display: block; text-align: left; margin-bottom: 5px;">Nueva Contraseña:</label>
+          <!-- Nueva contraseña -->
+          <div class="edit-account-form-group">
+            <label class="edit-account-label" for="password">Nueva Contraseña:</label>
             <input
               type="password"
               id="password"
@@ -39,8 +41,9 @@ import { FormsModule } from '@angular/forms';
             />
           </div>
 
-          <div style="margin-bottom: 15px;">
-            <label for="confirmPassword" style="display: block; text-align: left; margin-bottom: 5px;">Confirmar Contraseña:</label>
+          <!-- Confirmar contraseña -->
+          <div class="edit-account-form-group">
+            <label class="edit-account-label" for="confirmPassword">Confirmar Contraseña:</label>
             <input
               type="password"
               id="confirmPassword"
@@ -51,13 +54,25 @@ import { FormsModule } from '@angular/forms';
             />
           </div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <button (click)="goBack()" type="button" class="common-button" style="background-color: #a67c52; border-color: #a67c52; color: white; font-weight: normal; font-family: 'Playfair Display', serif; border-radius: 8px; box-shadow: none;font-size: 1.1rem;">
-              Volver
-            </button>
-            <button type="submit" [disabled]="accountForm.invalid" class="common-button" style="background-color: #a67c52; border-color: #a67c52; color: white; font-weight: normal; font-family: 'Playfair Display', serif; border-radius: 8px; box-shadow: none;font-size: 1.1rem;">
-              Actualizar
-            </button>
+          <!-- ❌ Cartel si las contraseñas no coinciden -->
+          <div *ngIf="passwordMismatch" style="margin-top: 20px; text-align: center; color: red;">
+            Las contraseñas no coinciden.
+          </div>
+
+          <!-- ✅ Cartel si se actualizó correctamente -->
+          <div *ngIf="updateSuccess" style="margin-top: 20px; text-align: center; color: green;">
+            Los cambios fueron guardados correctamente.
+          </div>
+
+          <!-- ❌ Cartel si el email no es correcto -->
+          <div *ngIf="emailMismatch" style="margin-top: 20px; text-align: center; color: red;">
+            El email no es el correcto.
+          </div>
+
+          <!-- Botones -->
+          <div class="button-container" style="margin-top: 20px;">
+            <button (click)="goBack()" type="button" class="common-button">Volver</button>
+            <button type="submit" [disabled]="accountForm.invalid" class="common-button">Actualizar</button>
           </div>
         </form>
       </div>
@@ -72,6 +87,10 @@ export class EditAccountComponent {
   password: string = '';
   confirmPassword: string = '';
 
+  updateSuccess: boolean = false;         // <-- Para mostrar mensaje verde
+  passwordMismatch: boolean = false;      // <-- Para mostrar error rojo
+  emailMismatch: boolean = false;         // <-- Para mostrar error de email
+
   constructor() {
     const currentUser = this.authService.getCurrentUser();
     if (currentUser && currentUser.email) {
@@ -84,7 +103,18 @@ export class EditAccountComponent {
   }
 
   async updateAccount() {
+    this.updateSuccess = false;
+    this.passwordMismatch = false;
+    this.emailMismatch = false;
+
+    const currentUser = this.authService.getCurrentUser();
+    if (!currentUser || currentUser.email !== this.email) {
+      this.emailMismatch = true;
+      return;
+    }
+
     if (this.password !== this.confirmPassword) {
+      this.passwordMismatch = true;
       return;
     }
 
@@ -92,16 +122,14 @@ export class EditAccountComponent {
       if (this.email) {
         await this.authService.updateEmail(this.email);
       }
-    } catch (error: any) {
-      // silently ignore errors
-    }
 
-    try {
       if (this.password) {
         await this.authService.updatePassword(this.password);
       }
+
+      this.updateSuccess = true;
     } catch (error: any) {
-      // silently ignore errors
+      console.error('Error al actualizar:', error);
     }
   }
 }

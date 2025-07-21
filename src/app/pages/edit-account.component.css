@@ -38,11 +38,11 @@
 
 .edit-account-input {
   border: 1px solid #ccc;
-  font-family: 'Playfair Display', serif;
   border-radius: 4px;
   padding: 0.5rem;
   width: 100%;
   box-sizing: border-box;
+  font-family: 'Playfair Display', serif;
 }
 
 .button-container {
@@ -58,13 +58,13 @@
   font-family: 'Playfair Display', serif;
   font-weight: normal;
   border-radius: 8px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.3rem;
   cursor: pointer;
   box-shadow: none;
+  font-size: 1rem;
 }
 
 .common-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-
