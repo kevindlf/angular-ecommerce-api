@@ -1,4 +1,5 @@
 .edit-account-input {
+  font-family: 'Playfair Display', serif;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
@@ -26,4 +27,8 @@
 .common-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.edit-account-input::placeholder {
+  font-family: 'Playfair Display', serif;
 }

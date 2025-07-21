@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { ProductFilterComponent } from '../product-filter/product-filter.component';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { CartService, CartItem } from '../../services/cart.service';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-account-product-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, ProductFilterComponent, CarouselComponent],
+  imports: [CommonModule, RouterModule, FormsModule, ProductFilterComponent, CarouselComponent],
   templateUrl: './account-product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -63,6 +65,7 @@ export class AccountProductListComponent implements OnInit {
             const category = this.categories.find(cat => cat.apiName === product.category.name);
             return {
               ...product,
+              quantity: 1, 
               category: {
                 ...product.category,
                 name: category ? category.name : product.category.name
@@ -156,15 +159,32 @@ export class AccountProductListComponent implements OnInit {
 
   addToCart(product: any): void {
     console.log('Agregar al carrito:', product);
+      const quantity = product.quantity && product.quantity > 0 ? product.quantity : 1;
     const item = {
       productId: product.id,
       title: product.title,
       price: product.price,
-      quantity: 1,
+      quantity: quantity,
       image: product.images?.[0] || ''
     };
     this.cartService.addToCart(item);
   }
+
+  increaseQuantity(product: any): void {
+  if (!product.quantity || product.quantity < 1) {
+    product.quantity = 1;
+  } else {
+    product.quantity++;
+  }
+}
+
+decreaseQuantity(product: any): void {
+  if (!product.quantity || product.quantity <= 1) {
+    product.quantity = 1;
+  } else {
+    product.quantity--;
+  }
+}
 
   // --- Helper Functions ---
   private normalizeSearchTerm(term: string): string {

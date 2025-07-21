@@ -57,13 +57,39 @@
               <p class="card-text"><strong>Precio: </strong>${{ product.price | number }}</p>
             </div>
 <div class="card-footer d-flex flex-column align-items-center">
-  <div class="mb-2">
+  <div class="mb-2" style="margin-bottom: 12px;">
     <small class="text-muted">
       Categoría: {{ product.category?.name || 'Sin categoría' }}
     </small>
   </div>
+
+  <!-- Selector de cantidad -->
+   <div class="quantity-selector d-flex align-items-center mb-2" style="margin-bottom: 12px;">
+    <button 
+    (click)="decreaseQuantity(product)" 
+    class="btn btn-outline-secondary btn-sm" 
+    style="width: 30px; height: 40px; padding: 0; font-size: 0.9rem;">
+    −
+  </button>
+  
+  <input 
+    type="number" 
+    [(ngModel)]="product.quantity" 
+    class="form-control text-center mx-2" 
+    style="width: 40px;" 
+    min="1">
+
+  <button 
+    (click)="increaseQuantity(product)" 
+    class="btn btn-outline-secondary btn-sm" 
+    style="width: 30px; height: 40px; padding: 0; font-size: 0.9rem;">
+    +
+  </button>
+</div>
+
+  <!-- Botón Agregar al carrito -->
   <div>
-    <button (click)="addToCart(product); $event.stopPropagation()" style="width: 150px; height: 40px;font-size: 1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; margin-top: 12px;  background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
+    <button (click)="addToCart(product); $event.stopPropagation()" style="width: 150px; height: 40px; font-size: 1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
       Agregar al carrito
     </button>
   </div>

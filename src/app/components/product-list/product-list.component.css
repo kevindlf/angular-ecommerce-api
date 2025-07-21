@@ -27,6 +27,10 @@
   transition: transform 0.2s;
   width: 100%;
   max-width: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card.h-100:hover {
