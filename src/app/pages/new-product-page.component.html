@@ -68,7 +68,7 @@
       <div *ngIf="!selectedCategory && !searchTerm">
         No hay productos disponibles
       </div>
-      <button (click)="clearFilters()" class="btn btn-sm btn-info mt-2">
+      <button (click)="clearFilters()" class="btn btn-sm btn-info mt-2" style="font-family: 'Playfair Display', serif; background-color: #a67c52; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
         Mostrar todos los productos
       </button>
     </div>
@@ -79,6 +79,9 @@
     &#8679;
   </button>
 </div>
+
+<div *ngIf="filteredProducts.length === 0" style="height: 30px;"></div>
+
 <footer class="footer">
   <p>Copyright My Home Store - 2025. TODOS LOS DERECHOS RESERVADOS</p>
 </footer>

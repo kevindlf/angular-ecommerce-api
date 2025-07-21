@@ -58,9 +58,14 @@
         </div>
 
         <label for="dni">DNI</label>
-        <input type="text" id="dni" name="dni" [(ngModel)]="dni" required class="form-input" />
-        <div *ngIf="purchaseForm.submitted && !dni" class="error-message">
-          <small>El DNI es obligatorio.</small>
+        <input type="text" id="dni" name="dni" [(ngModel)]="dni" required 
+        class="form-input" 
+        maxlength="8" 
+        pattern="^\d{7,8}$"
+        title="Ingrese un DNI válido de 7 u 8 dígitos" />
+        
+        <div *ngIf="purchaseForm.submitted && (!dni || !dni.match('^\\d{7,8}$'))" class="error-message">
+          <small>Ingrese un DNI válido de 7 u 8 dígitos.</small>
         </div>
 
 
@@ -94,10 +99,10 @@
         <div class="form-checkbox">
           <input type="checkbox" id="terms" name="terms" [(ngModel)]="termsAccepted" required />
           <label for="terms">Acepto los términos y condiciones</label>
+          </div>
           <div *ngIf="purchaseForm.submitted && !termsAccepted" class="error-message">
             <small>Debe aceptar los términos y condiciones.</small>
           </div>
-        </div>
 
         <div class="form-buttons">
           <button type="button" (click)="goBack()" class="button back-button">Volver</button>

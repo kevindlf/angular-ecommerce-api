@@ -38,6 +38,7 @@
 
 .edit-account-input {
   border: 1px solid #ccc;
+  font-family: 'Playfair Display', serif;
   border-radius: 4px;
   padding: 0.5rem;
   width: 100%;
