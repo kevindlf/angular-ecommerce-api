@@ -40,8 +40,10 @@ export class NewProductPageComponent implements OnInit {
     this.loading = true;
     this.error = false;
 
+    console.log('Calling getAllProducts API...');
     this.productService.getAllProducts().subscribe({
       next: (data) => {
+        console.log('API data received:', data);
         this.products = data
           .filter(product =>
             product.category &&
@@ -63,10 +65,10 @@ export class NewProductPageComponent implements OnInit {
         this.cdr.detectChanges();
       },
       error: (err) => {
+        console.error('Error loading products:', err);
         this.error = true;
         this.loading = false;
         this.cdr.detectChanges();
-        console.error('Error loading products:', err);
       }
     });
   }
