@@ -76,7 +76,7 @@
 }
 
 .scroll-top-button {
-  background-color: #a67c52;
+  background-color: #525151;
   border: none;
   border-radius: 50%;
   width: 60px;
@@ -90,5 +90,5 @@
 }
 
 .scroll-top-button:hover {
-  background-color: #8c6640;
+  background-color: #525151;
 }

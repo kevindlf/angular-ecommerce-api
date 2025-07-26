@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   template: `
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Playfair Display', serif;">
       <div style="padding: 20px; max-width: 500px; width: 100%; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background-color: white;">
-        <h2 style="color: #a67c52; font-size: 2rem;">Registrarse</h2>
+        <h2 style="color: #525151; font-size: 2rem;">Registrarse</h2>
         <form (ngSubmit)="registrar()" style="text-align: left;">
           <div style="margin-bottom: 15px;">
             <label for="nombre" style="display: block; margin-bottom: 5px; text-align: left;">Nombre</label>

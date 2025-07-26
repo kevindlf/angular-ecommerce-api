@@ -38,7 +38,7 @@ button.search-button {
   cursor: pointer;
   box-shadow: none;
   margin: 0 10px;
-  background-color: #a67c52;
+  background-color: #525151;
   color: white;
   border: none;
   font-family: 'Playfair Display', serif;
@@ -47,7 +47,7 @@ button.search-button {
 }
 
 button.search-button:hover {
-  background-color: #8c6239;
+  background-color: #525151;
 }
 
 input::placeholder {

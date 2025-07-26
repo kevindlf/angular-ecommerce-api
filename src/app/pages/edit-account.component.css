@@ -16,7 +16,7 @@
 }
 
 .edit-account-title {
-  color: #a67c52;
+  color: #525151;
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
@@ -52,8 +52,8 @@
 }
 
 .common-button {
-  background-color: #a67c52;
-  border: 1px solid #a67c52;
+  background-color: #525151;
+  border: 1px solid #525151;
   color: white;
   font-family: 'Playfair Display', serif;
   font-weight: normal;

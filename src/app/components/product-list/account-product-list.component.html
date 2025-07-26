@@ -1,11 +1,11 @@
 <div class="container mt-4">
   <div class="titulo-destacado" style="background: transparent !important; box-shadow: none; padding: 0; margin: 60px auto 0 auto; text-align: center; max-width: 900px;">
     <h1 style="font-family: 'Playfair Display', serif; margin-bottom: 0;">
-      Descubrí lo mejor<br />para tu hogar
+      Tu estilo, tu hogar,<br />todo en un solo lugar
     </h1>
     <!-- Removed the line below as per user request -->
     <!-- <p style="font-size: 1.2rem; color: #555; margin-top: 4px;">Productos seleccionados para vos</p> -->
-    <a routerLink="/new-product-page" style="background-color: #a67c52; color: white; padding: 12px 32px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
+    <a routerLink="/new-product-page" style="background-color: #525151; color: white; padding: 12px 32px; font-size: 1.2rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
       Ver productos
     </a>
   </div>
@@ -60,7 +60,7 @@
       font-size: 1rem;
       padding: 8px 20px;
       border-radius: 8px;
-      background-color: #a67c52;
+      background-color: #525151;
       border: none;
       color: white;
       cursor: pointer;
@@ -80,7 +80,7 @@
         <span class="badge bg-primary">
           {{ getCategoryName(selectedCategory) }}
         </span>
-        <button (click)="clearFilters()" class="btn btn-sm btn-outline-secondary ms-2" style="font-family: 'Playfair Display', serif; background-color: #a67c52; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
+        <button (click)="clearFilters()" class="btn btn-sm btn-outline-secondary ms-2" style="font-family: 'Playfair Display', serif; background-color: #525151; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
           Limpiar filtros
         </button>
       </h4>
@@ -134,7 +134,7 @@
 
   <!-- Botón Agregar al carrito -->
   <div>
-    <button (click)="addToCart(product); $event.stopPropagation()" style="width: 150px; height: 40px; font-size: 1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; background-color: #a67c52; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
+    <button (click)="addToCart(product); $event.stopPropagation()" style="width: 150px; height: 40px; font-size: 1rem; font-weight: normal; border-radius: 8px; cursor: pointer; box-shadow: none; background-color: #525151; color: white; border: none; font-family: 'Playfair Display', serif; white-space: nowrap; text-align: center;">
       Agregar al carrito
     </button>
   </div>
@@ -154,7 +154,7 @@
       <div *ngIf="!selectedCategory && !searchTerm">
         No hay productos disponibles
       </div>
-<button (click)="clearFilters()" class="btn btn-sm btn-info mt-2 show-all-products-button" style="font-family: 'Playfair Display', serif; background-color: #a67c52; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
+<button (click)="clearFilters()" class="btn btn-sm btn-info mt-2 show-all-products-button" style="font-family: 'Playfair Display', serif; background-color: #525151; color: white; padding: 10px 20px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; display: inline-block; text-align: center; text-decoration: none;">
         Mostrar todos los productos
       </button>
     </div>

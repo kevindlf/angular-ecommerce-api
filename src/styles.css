@@ -211,7 +211,7 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="number"]:focus {
-  border-color: #a67c52;
+  border-color: #525151;
   box-shadow: 0 0 6px rgba(166, 124, 82, 0.5);
   outline: none;
 }
@@ -221,7 +221,7 @@ input[type="number"]:focus {
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background-color: #a67c52;
+  background-color: #525151;
   color: white;
   border-radius: 8px;
   font-weight: 600;
@@ -230,5 +230,5 @@ input[type="number"]:focus {
 }
 
 .btn-submit:hover {
-  background-color: #7a5a3a;
+  background-color: #525151;
 }

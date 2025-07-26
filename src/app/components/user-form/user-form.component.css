@@ -38,7 +38,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   border: none;
-  background-color: #007bff;
+  background-color: #525151; /* Changed to light gray */
   color: white;
   border-radius: 8px;
   font-weight: 600;
@@ -46,5 +46,5 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #525151; /* Slightly darker gray on hover */
 }

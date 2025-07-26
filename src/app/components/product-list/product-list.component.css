@@ -80,12 +80,12 @@
 }
 
 .scroll-top-button {
-  background-color: #a67c52;
+  background-color: #525151;
   border: none;
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  color: #fff8e1;
+  color: white;
   font-size: 32px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -94,11 +94,11 @@
 }
 
 .scroll-top-button:hover {
-  background-color: #8c6640;
+  background-color: #525151;
 }
 
 .custom-button {
-  background-color: #a67c52;
+  background-color: #525151;
   color: white;
   padding: 12px 32px;
   font-size: 1.2rem;
@@ -149,7 +149,7 @@
 .feature-text h3 {
   margin: 0;
   font-size: 1rem;
-  color: #a67c52;
+  color: #525151;
   font-weight: 700;
 }
 
@@ -241,7 +241,7 @@
     font-weight: 600;
     cursor: pointer;
     font-size: 1rem;
-    color: #5a3e2b;
+    color: #525151;
   }
   .faq-item[open] {
     background-color: #fcf0e5;

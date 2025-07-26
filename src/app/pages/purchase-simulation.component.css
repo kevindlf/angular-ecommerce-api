@@ -26,7 +26,7 @@
 .purchase-simulation-container h2 {
   font-weight: 500;
   font-size: 2.4rem;
-  color: #a67c52;
+  color: #525151;
   margin-bottom: 30px;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .form-input:focus, .form-select:focus {
-  border-color: #a67c52;
+  border-color: #525151;
   box-shadow: 0 0 6px rgba(166, 124, 82, 0.5);
   outline: none;
 }
@@ -116,7 +116,7 @@
 }
 
 .button {
-  background-color: #a67c52;
+  background-color: #525151;
   color: white;
   border: none;
   border-radius: 10px;
@@ -136,25 +136,25 @@
 }
 
 .button-primary {
-  background-color: #a67c52;
+  background-color: #525151;
   color: white;
 }
 
 .button-secondary {
-  background-color: #c9b59a;
+  background-color: #525151;
   color: white;
 }
 
 .button-primary:hover {
-  background-color: #8c6239;
+  background-color: #525151;
 }
 
 .button-secondary:hover {
-  background-color: #b39b7a;
+  background-color: #525151;
 }
 
 .button:hover:not(:disabled) {
-  background-color: #8c6239;
+  background-color: #525151;
 }
 
 .button:disabled {
